@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Josh Bounds\\Documents\\Godot_v3.4.4-stable_mono_win64\\Bound 2\\Bound 2.csproj",
+      "projectUniqueName": "C:\\Users\\Josh Bounds\\Documents\\Godot_v3.4.4-stable_mono_win64\\Slime-Run\\Bound 2.csproj",
       "projectName": "Bound 2",
-      "projectPath": "C:\\Users\\Josh Bounds\\Documents\\Godot_v3.4.4-stable_mono_win64\\Bound 2\\Bound 2.csproj",
+      "projectPath": "C:\\Users\\Josh Bounds\\Documents\\Godot_v3.4.4-stable_mono_win64\\Slime-Run\\Bound 2.csproj",
       "packagesPath": "C:\\Users\\Josh Bounds\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Josh Bounds\\Documents\\Godot_v3.4.4-stable_mono_win64\\Bound 2\\.mono\\temp\\obj\\",
+      "outputPath": "C:\\Users\\Josh Bounds\\Documents\\Godot_v3.4.4-stable_mono_win64\\Slime-Run\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Josh Bounds\\AppData\\Roaming\\NuGet\\NuGet.Config"

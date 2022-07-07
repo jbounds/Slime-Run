@@ -106,7 +106,7 @@ custom_styles/panel = SubResource( 4 )
 
 [node name="NextGoalLabel2" type="RichTextLabel" parent="Player/UserInterface/NextGoalContainer"]
 margin_left = 7.0
-margin_right = 75.9999
+margin_right = 76.0
 margin_bottom = 16.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/normal_font = SubResource( 6 )
