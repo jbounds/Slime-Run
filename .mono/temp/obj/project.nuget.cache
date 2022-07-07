@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "b63qliCO45b2ac/X96CfZS/vOVtESHpot6Hbghj0N6uNa1atAZ8SYhv2p7bD1L5rZEKj+hoY6qGFmnkizz34uA==",
+  "dgSpecHash": "8BfN71HQzecn4g6aHOZwRt1Z3Pl8f3pUehOROTUGXWDOCWs0QXmTJXn/nYMbouuCYbOecXLHidFc+mvB9RKfEA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Josh Bounds\\Documents\\Godot_v3.4.4-stable_mono_win64\\Slime-Run\\Bound 2.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\tmorg\\Documents\\GitHub\\Slime-Run\\Bound 2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tmorg\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "C:\\Users\\tmorg\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.2\\microsoft.netframework.referenceassemblies.net472.1.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

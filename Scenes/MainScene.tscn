@@ -97,10 +97,10 @@ text = "Score: 0"
 script = ExtResource( 5 )
 
 [node name="NextGoalContainer" type="PanelContainer" parent="Player/UserInterface"]
-margin_left = 433.0
-margin_top = -284.0
-margin_right = 510.0
-margin_bottom = -256.0
+margin_left = 538.0
+margin_top = -204.0
+margin_right = 615.0
+margin_bottom = -176.0
 rect_scale = Vector2( 1.0301, 2.25203 )
 custom_styles/panel = SubResource( 4 )
 
