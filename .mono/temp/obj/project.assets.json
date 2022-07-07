@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.7.2": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.7.2": []
+  },
+  "packageFolders": {
+    "C:\\Users\\Josh Bounds\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Josh Bounds\\Documents\\Godot_v3.4.4-stable_mono_win64\\Bound 2\\Bound 2.csproj",
+      "projectName": "Bound 2",
+      "projectPath": "C:\\Users\\Josh Bounds\\Documents\\Godot_v3.4.4-stable_mono_win64\\Bound 2\\Bound 2.csproj",
+      "packagesPath": "C:\\Users\\Josh Bounds\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Josh Bounds\\Documents\\Godot_v3.4.4-stable_mono_win64\\Bound 2\\.mono\\temp\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Josh Bounds\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net472"
+      ],
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net472": {
+        "targetAlias": "net472",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
