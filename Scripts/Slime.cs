@@ -19,6 +19,7 @@ namespace Scripts
 
                 if (this.SlimeData.Slime != currentGoalLabel.SlimeData.Slime)
                 {
+                    GetParent().CallDeferred("remove_child", this);
                     player.handle_hit_death();
                 }
                 else

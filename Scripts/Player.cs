@@ -24,6 +24,7 @@ namespace Scripts
         public int ScoreLabelPositionDifference = 0;
         public int SecondsFraction = 0;
         public int Speed = 200;
+        public StrikesContainer StrikesContainer = null;
         public Vector2 Velocity = new Vector2();
 
         public SlimeData ChooseEnemyData()
@@ -186,14 +187,22 @@ namespace Scripts
 
         public virtual void handle_hit_death()
         {
-            ScoreLabel.ResetScore();
-            QuarterSecondsPassed = 0;
-            this.Position = PlayerStartPosition;
+            if (StrikesContainer.Strikes > 0)
+            {
+                StrikesContainer.UpdateStrikes();
+            }
+            else
+            {
+                ScoreLabel.ResetScore();
+                QuarterSecondsPassed = 0;
+                this.Position = PlayerStartPosition;
 
-            RemoveAllEnemies();
+                RemoveAllEnemies();
 
-            // Reset the seconds tracker to refresh the map.
-            SecondsFraction = -1;
+                // Reset the seconds tracker to refresh the map.
+                SecondsFraction = -1;
+                StrikesContainer.ResetStrikes();
+            }
         }
 
         private void MovePlayer()
@@ -280,6 +289,7 @@ namespace Scripts
 
             CurrentGoalLabel = (Goal)this.GetNode("UserInterface/CurrentGoalLabel");
             NextGoalLabel = (Goal)this.GetNode("UserInterface/NextGoalLabel");
+            StrikesContainer = (StrikesContainer)this.GetNode("UserInterface/StrikesContainer");
 
             ScoreLabelPositionDifference = (int)(PlayerStartPosition.x - ScoreLabel.RectGlobalPosition.x);
             base._Ready();
