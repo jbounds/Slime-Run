@@ -12,11 +12,43 @@ public class Player : KinematicBody2D
     public Level levelLabel = null;
     public Vector2 playerStartPosition = new Vector2();
     public Score scoreLabel = null;
+    public Goal currentGoalLabel = null;
+    public Goal nextGoalLabel = null;
     public int scoreLabelPositionDifference = 0;
     public int secondsFraction = 0;
     public int speed = 200;
     public Vector2 velocity = new Vector2();
     public uint quarterSecondsPassed = 0;
+
+    public SlimeData ChooseEnemyData()
+    {
+        return enemyList[(int)(GD.Randi() % enemyList.Count)];
+    }
+
+    public bool DenyOverlappingSpawn(uint xPosition, float yPosition)
+    {
+        var allNodes = GetParent().GetChildren();
+        var enemyList = new List<Enemy>();
+
+        for (int i = 0; i < allNodes.Count; i++)
+        {
+            if (allNodes[i] is Enemy)
+            {
+                var enemy = allNodes[i] as Enemy;
+                if (enemy.Position.y == yPosition)
+                {
+                    enemyList.Add(enemy);
+                }
+            }
+        }
+
+        // Don't spawn the enemy if it is colliding with another enemy (can maybe check collision method rather than this.)
+        if (enemyList.Any(a => a.Position.x > xPosition - 32 && a.Position.x < xPosition + 32))
+        {
+            return true;
+        }
+        return false;
+    }
 
     public void DrawBackgroundTiles()
     {
@@ -37,14 +69,22 @@ public class Player : KinematicBody2D
         }
     }
 
-    public void RemoveOldBackgroundTiles()
+    private void GenerateEnemyLine()
     {
-        var playerPosition = backgroundTiles.WorldToMap(this.Position);
-        var xMaxValue = 36;
+        quarterSecondsPassed++;
 
-        for (int i = -2; i < xMaxValue; i++)
+        // Less than 10 enemies + 1 more per 5 seconds
+        var enemyMax = 10 + (quarterSecondsPassed / 20);
+
+        var randomNumberOfEnemies = GD.Randi() % enemyMax;
+        for (int i = 0; i < randomNumberOfEnemies; i++)
         {
-            backgroundTiles.SetCell(i, (int)playerPosition.y + 5, -1);
+            SpawnEnemy();
+        }
+
+        if (secondsFraction == 60)
+        {
+            secondsFraction = 0;
         }
     }
 
@@ -130,11 +170,16 @@ public class Player : KinematicBody2D
     {
         scoreLabel.score += 1;
         scoreLabel.UpdateScore();
+
+        currentGoalLabel.slimeData = nextGoalLabel.slimeData;
+        currentGoalLabel.UpdateGoal();
+
+        nextGoalLabel.slimeData = ChooseEnemyData();
+        nextGoalLabel.UpdateGoal();
     }
 
     public virtual void handle_hit_death()
     {
-        // this.levelLabel.ResetLevel();
         scoreLabel.ResetScore();
         quarterSecondsPassed = 0;
         this.Position = playerStartPosition;
@@ -143,44 +188,6 @@ public class Player : KinematicBody2D
 
         // Reset the seconds tracker to refresh the map.
         secondsFraction = -1;
-    }
-
-    public void RemoveAllEnemies(bool singleRow = false)
-    {
-        var allNodes = GetParent().GetChildren();
-        var pixelFallOffPoint = 500;
-        for (int i = 0; i < allNodes.Count; i++)
-        {
-            if (allNodes[i] is Enemy)
-            {
-                var enemy = allNodes[i] as Enemy;
-                if (singleRow && this.Position.y + pixelFallOffPoint < enemy.Position.y)
-                {
-                    GetParent().CallDeferred("remove_child", (Node)allNodes[i]);
-                }
-                else if (!singleRow)
-                {
-                    GetParent().CallDeferred("remove_child", (Node)allNodes[i]);
-                }
-            }
-        }
-    }
-
-    public override void _PhysicsProcess(float delta)
-    {
-        secondsFraction += 1;
-        GetInput();
-        MovePlayer();
-
-        if (secondsFraction % 15 == 0)
-        {
-            DrawBackgroundTiles();
-            RemoveOldBackgroundTiles();
-            backgroundTiles.UpdateBitmaskRegion();
-
-            GenerateEnemyLine();
-            RemoveAllEnemies(true);
-        }
     }
 
     private void MovePlayer()
@@ -216,22 +223,41 @@ public class Player : KinematicBody2D
         }
     }
 
-    private void GenerateEnemyLine()
+    public override void _PhysicsProcess(float delta)
     {
-        quarterSecondsPassed++;
+        secondsFraction += 1;
+        GetInput();
+        MovePlayer();
 
-        // Less than 10 enemies + 1 more per 5 seconds
-        var enemyMax = 10 + (quarterSecondsPassed / 20);
-
-        var randomNumberOfEnemies = GD.Randi() % enemyMax;
-        for (int i = 0; i < randomNumberOfEnemies; i++)
+        if (secondsFraction % 15 == 0)
         {
-            SpawnEnemy();
+            DrawBackgroundTiles();
+            RemoveOldBackgroundTiles();
+            backgroundTiles.UpdateBitmaskRegion();
+
+            GenerateEnemyLine();
+            RemoveAllEnemies(true);
         }
+    }
 
-        if (secondsFraction == 60)
+    public void RemoveAllEnemies(bool singleRow = false)
+    {
+        var allNodes = GetParent().GetChildren();
+        var pixelFallOffPoint = 500;
+        for (int i = 0; i < allNodes.Count; i++)
         {
-            secondsFraction = 0;
+            if (allNodes[i] is Enemy)
+            {
+                var enemy = allNodes[i] as Enemy;
+                if (singleRow && this.Position.y + pixelFallOffPoint < enemy.Position.y)
+                {
+                    GetParent().CallDeferred("remove_child", (Node)allNodes[i]);
+                }
+                else if (!singleRow)
+                {
+                    GetParent().CallDeferred("remove_child", (Node)allNodes[i]);
+                }
+            }
         }
     }
 
@@ -245,14 +271,40 @@ public class Player : KinematicBody2D
         levelLabel.levelData = LevelData.GetLevelList();
         playerStartPosition = this.Position;
         scoreLabel = (Score)this.GetNode("UserInterface/ScoreLabel");
+
+        currentGoalLabel = (Goal)this.GetNode("UserInterface/CurrentGoalLabel");
+        nextGoalLabel = (Goal)this.GetNode("UserInterface/NextGoalLabel");
+
         scoreLabelPositionDifference = (int)(playerStartPosition.x - scoreLabel.RectGlobalPosition.x);
         base._Ready();
+    }
+
+    public void RemoveOldBackgroundTiles()
+    {
+        var playerPosition = backgroundTiles.WorldToMap(this.Position);
+        var xMaxValue = 36;
+
+        for (int i = -2; i < xMaxValue; i++)
+        {
+            backgroundTiles.SetCell(i, (int)playerPosition.y + 5, -1);
+        }
     }
 
     public void SetCell(TileMap tileMap, int x, int y, int id)
     {
         // An index of -1 clears the cell. This is not used here.
         tileMap.SetCell(x, y, id, false, false, false, GetSubTileWithPriority(tileMap, id));
+    }
+
+    private void SetEnemySprite(Enemy enemy)
+    {
+        var enemySprite = (enemy.GetNode("Sprite") as Sprite);
+        enemySprite.Texture = (Texture)GD.Load("res://Texture/Slimes/" + enemy.EnemyData.Slime + ".png");
+
+        if (enemy.EnemyData.Slime == Slime.LavaSlime)
+        {
+            enemySprite.Hframes = 8;
+        }
     }
 
     public void SpawnEnemy()
@@ -272,65 +324,12 @@ public class Player : KinematicBody2D
 
             var enemyData = ChooseEnemyData();
             newEnemy.EnemyData = enemyData;
-            // SetEnemyLevel(newEnemy);
             SetEnemySprite(newEnemy);
 
             GetParent().AddChild(newEnemy);
 
             newEnemy.MoveLocalX(randomX);
             newEnemy.MoveLocalY(this.Position.y - newEnemyPixelDistanceAhead);
-        }
-    }
-
-    public bool DenyOverlappingSpawn(uint xPosition, float yPosition)
-    {
-        var allNodes = GetParent().GetChildren();
-        var enemyList = new List<Enemy>();
-
-        for (int i = 0; i < allNodes.Count; i++)
-        {
-            if (allNodes[i] is Enemy)
-            {
-                var enemy = allNodes[i] as Enemy;
-                if (enemy.Position.y == yPosition)
-                {
-                    enemyList.Add(enemy);
-                }
-            }
-        }
-
-        // Don't spawn the enemy if it is colliding with another enemy (can maybe check collision method rather than this.)
-        if (enemyList.Any(a => a.Position.x > xPosition - 32 && a.Position.x < xPosition + 32))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public SlimeData ChooseEnemyData()
-    {
-        //? Balance to spawn weaker enemies at the start.
-        return enemyList[(int)(GD.Randi() % enemyList.Count)];
-    }
-
-    // private void SetEnemyLevel(Enemy enemy)
-    // {
-    //     var randomLevel = GD.Randi() % 10;
-    //     var adjustedLevel = randomLevel + enemy.EnemyData.MinLevel;
-
-    //     enemy.LevelLabel = (Level)enemy.GetNode("LevelLabel");
-    //     enemy.LevelLabel.CurrentLevel = adjustedLevel;
-    //     enemy.LevelLabel.UpdateEnemyLevel();
-    // }
-
-    private void SetEnemySprite(Enemy enemy)
-    {
-        var enemySprite = (enemy.GetNode("Sprite") as Sprite);
-        enemySprite.Texture = (Texture)GD.Load("res://Texture/Slimes/" + enemy.EnemyData.Slime + ".png");
-
-        if (enemy.EnemyData.Slime == Slime.LavaSlime)
-        {
-            enemySprite.Hframes = 8;
         }
     }
 }

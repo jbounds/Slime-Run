@@ -28,7 +28,7 @@ public class SlimeData
         return enemyList;
     }
 
-    private static SlimeData CreateSlime(Slime name, int minLevel, int maxLevel, Difficulty difficulty)
+    public static SlimeData CreateSlime(Slime name, int minLevel, int maxLevel, Difficulty difficulty)
     {
         return new SlimeData()
                 {
