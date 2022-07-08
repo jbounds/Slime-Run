@@ -1,41 +1,45 @@
 using Godot;
-using System;
+using Scripts;
+using Scripts.Enums;
 
-public class SlimeData
+namespace Scripts
 {
-    public SlimeData()
+    public class SlimeData
     {
+        public SlimeData()
+        {
 
-    }
+        }
 
-    public Difficulty AssociatedDifficulty;
-    public int MaxLevel;
-    public int MinLevel;
-    public Slime Slime;
+        public DifficultyTypes AssociatedDifficulty;
+        public int MaxLevel;
+        public int MinLevel;
+        public SlimeTypes Slime;
 
-    public static System.Collections.Generic.List<SlimeData> GetEnemyList()
-    {
-        var enemyList = new System.Collections.Generic.List<SlimeData>();
+        public static System.Collections.Generic.List<SlimeData> GetEnemyList()
+        {
+            var enemyList = new System.Collections.Generic.List<SlimeData>();
 
-        enemyList.Add(CreateSlime(Slime.BasicSlime, 0, 9, Difficulty.Easy));
-        enemyList.Add(CreateSlime(Slime.BunnySlime, 10, 19, Difficulty.Easy));
-        enemyList.Add(CreateSlime(Slime.WaterSlime, 20, 29, Difficulty.Easy));
-        enemyList.Add(CreateSlime(Slime.PandaSlime, 30, 39, Difficulty.Normal));
-        enemyList.Add(CreateSlime(Slime.PufferSlime, 40, 49, Difficulty.Normal));
-        enemyList.Add(CreateSlime(Slime.LavaSlime, 50, 59, Difficulty.Hard));
-        enemyList.Add(CreateSlime(Slime.FoxSlime, 50, 59, Difficulty.Hard));
+            enemyList.Add(CreateSlime(SlimeTypes.BasicSlime, 0, 9, DifficultyTypes.Easy));
+            enemyList.Add(CreateSlime(SlimeTypes.BunnySlime, 10, 19, DifficultyTypes.Easy));
+            enemyList.Add(CreateSlime(SlimeTypes.WaterSlime, 20, 29, DifficultyTypes.Easy));
+            enemyList.Add(CreateSlime(SlimeTypes.PandaSlime, 30, 39, DifficultyTypes.Normal));
+            enemyList.Add(CreateSlime(SlimeTypes.PufferSlime, 40, 49, DifficultyTypes.Normal));
+            enemyList.Add(CreateSlime(SlimeTypes.LavaSlime, 50, 59, DifficultyTypes.Hard));
+            enemyList.Add(CreateSlime(SlimeTypes.FoxSlime, 50, 59, DifficultyTypes.Hard));
 
-        return enemyList;
-    }
+            return enemyList;
+        }
 
-    public static SlimeData CreateSlime(Slime name, int minLevel, int maxLevel, Difficulty difficulty)
-    {
-        return new SlimeData()
-                {
-                    Slime = name,
-                    MinLevel = minLevel,
-                    MaxLevel = maxLevel,
-                    AssociatedDifficulty = difficulty
-                };
+        public static SlimeData CreateSlime(SlimeTypes name, int minLevel, int maxLevel, DifficultyTypes difficulty)
+        {
+            return new SlimeData()
+            {
+                Slime = name,
+                MinLevel = minLevel,
+                MaxLevel = maxLevel,
+                AssociatedDifficulty = difficulty
+            };
+        }
     }
 }

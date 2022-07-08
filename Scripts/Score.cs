@@ -1,17 +1,21 @@
 using Godot;
 using System;
 
-public class Score : Label
+namespace Scripts
 {
-    public float score = 0;
 
-    public void UpdateScore()
+    public class Score : Label
     {
-        this.Text = string.Format("Score: {0}", score);
-    }
+        public float score = 0;
 
-    public void ResetScore()
-    {
-        score = 0;
+        public void UpdateScore()
+        {
+            this.Text = string.Format("Score: {0}", score);
+        }
+
+        public void ResetScore()
+        {
+            score = 0;
+        }
     }
 }

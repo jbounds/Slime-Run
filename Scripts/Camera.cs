@@ -1,18 +1,21 @@
 using Godot;
 using System;
 
-public class Camera : Camera2D
+namespace Scripts
 {
-    public KinematicBody2D player = null;
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+    public class Camera : Camera2D
     {
-        player = (KinematicBody2D)GetParent().GetNode("Player");
-    }
+        public KinematicBody2D player = null;
 
-    public override void _Process(float delta)
-    {
-        // Position.x = player.Position.x;
+        // Called when the node enters the scene tree for the first time.
+        public override void _Ready()
+        {
+            player = (KinematicBody2D)GetParent().GetNode("Player");
+        }
+
+        public override void _Process(float delta)
+        {
+            // Position.x = player.Position.x;
+        }
     }
 }

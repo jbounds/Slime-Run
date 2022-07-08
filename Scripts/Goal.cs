@@ -1,33 +1,36 @@
 using Godot;
-using System;
+using Scripts.Enums;
 
-public class Goal : RichTextLabel
+namespace Scripts
 {
-    public Sprite slime;
-    public SlimeData slimeData;
-
-    public override void _Ready()
+    public class Goal : RichTextLabel
     {
-        slime = (Sprite)this.GetNode("Slime");
-        slimeData = SlimeData.CreateSlime(Slime.BasicSlime, 0, 9, Difficulty.Easy);
-        base._Ready();
-    }
+        public Sprite slime;
+        public SlimeData slimeData;
 
-    public void ResetGoal()
-    {
-
-    }
-
-    public void UpdateGoal()
-    {
-        slime.Texture = (Texture)GD.Load("res://Texture/Slimes/" + slimeData.Slime + ".png");
-        if (slimeData.Slime == Slime.LavaSlime)
+        public override void _Ready()
         {
-            slime.Hframes = 8;
+            slime = (Sprite)this.GetNode("Slime");
+            slimeData = SlimeData.CreateSlime(SlimeTypes.BasicSlime, 0, 9, Scripts.Enums.DifficultyTypes.Easy);
+            base._Ready();
         }
-        else
+
+        public void ResetGoal()
         {
-            slime.Hframes = 12;
+
+        }
+
+        public void UpdateGoal()
+        {
+            slime.Texture = (Texture)GD.Load("res://Texture/Slimes/" + slimeData.Slime + ".png");
+            if (slimeData.Slime == SlimeTypes.LavaSlime)
+            {
+                slime.Hframes = 8;
+            }
+            else
+            {
+                slime.Hframes = 12;
+            }
         }
     }
 }
