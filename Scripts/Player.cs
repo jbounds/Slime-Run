@@ -12,21 +12,23 @@ namespace Scripts
         public TileMap BackgroundTiles = null;
         public TouchScreenButton ButtonLeft;
         public TouchScreenButton ButtonRight;
+        public Goal CurrentGoalLabel = null;
+        // Will be updated on menu in future.
+        public DifficultyTypes Difficulty = DifficultyTypes.Easy;
         public List<SlimeData> EnemyList;
         public Level LevelLabel = null;
-        public Vector2 PlayerStartPosition = new Vector2();
-        public Score ScoreLabel = null;
-        public Goal CurrentGoalLabel = null;
         public Goal NextGoalLabel = null;
+        public Vector2 PlayerStartPosition = new Vector2();
+        public uint QuarterSecondsPassed = 0;
+        public Score ScoreLabel = null;
         public int ScoreLabelPositionDifference = 0;
         public int SecondsFraction = 0;
         public int Speed = 200;
         public Vector2 Velocity = new Vector2();
-        public uint QuarterSecondsPassed = 0;
 
         public SlimeData ChooseEnemyData()
         {
-            return EnemyList[(int)(GD.Randi() % EnemyList.Count)];
+            return EnemyList[(int)(GD.Randi() % (EnemyList.FindLastIndex(a => a.AssociatedDifficulty == Difficulty) + 1))];
         }
 
         public bool DenyOverlappingSpawn(uint xPosition, float yPosition)
