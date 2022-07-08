@@ -7,7 +7,7 @@ namespace Scripts
     {
         public int Experience = 0;
         public float CurrentLevel = 1;
-        public System.Collections.Generic.List<LevelData> levelData;// = LevelData.GetLevelList();
+        public System.Collections.Generic.List<LevelData> levelData;
 
         public void UpdatePlayerLevel()
         {

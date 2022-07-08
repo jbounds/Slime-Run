@@ -9,24 +9,24 @@ namespace Scripts
 
     public class Player : KinematicBody2D
     {
-        public TileMap backgroundTiles = null;
-        public TouchScreenButton buttonLeft;
-        public TouchScreenButton buttonRight;
-        public List<SlimeData> enemyList;
-        public Level levelLabel = null;
-        public Vector2 playerStartPosition = new Vector2();
-        public Score scoreLabel = null;
-        public Goal currentGoalLabel = null;
-        public Goal nextGoalLabel = null;
-        public int scoreLabelPositionDifference = 0;
-        public int secondsFraction = 0;
-        public int speed = 200;
-        public Vector2 velocity = new Vector2();
-        public uint quarterSecondsPassed = 0;
+        public TileMap BackgroundTiles = null;
+        public TouchScreenButton ButtonLeft;
+        public TouchScreenButton ButtonRight;
+        public List<SlimeData> EnemyList;
+        public Level LevelLabel = null;
+        public Vector2 PlayerStartPosition = new Vector2();
+        public Score ScoreLabel = null;
+        public Goal CurrentGoalLabel = null;
+        public Goal NextGoalLabel = null;
+        public int ScoreLabelPositionDifference = 0;
+        public int SecondsFraction = 0;
+        public int Speed = 200;
+        public Vector2 Velocity = new Vector2();
+        public uint QuarterSecondsPassed = 0;
 
         public SlimeData ChooseEnemyData()
         {
-            return enemyList[(int)(GD.Randi() % enemyList.Count)];
+            return EnemyList[(int)(GD.Randi() % EnemyList.Count)];
         }
 
         public bool DenyOverlappingSpawn(uint xPosition, float yPosition)
@@ -56,29 +56,29 @@ namespace Scripts
 
         public void DrawBackgroundTiles()
         {
-            var playerPosition = backgroundTiles.WorldToMap(this.Position);
+            var playerPosition = BackgroundTiles.WorldToMap(this.Position);
             var boundaries = GetTileBoundary(playerPosition);
 
             for (int i = 0; i < boundaries.Count; i++)
             {
-                var tile = backgroundTiles.GetCell((int)boundaries[i].x, (int)boundaries[i].y);
+                var tile = BackgroundTiles.GetCell((int)boundaries[i].x, (int)boundaries[i].y);
 
                 // If the Tile doesn't exist, create a new tile.
                 // Use my game's X camera range. A little lazy - could do soemthing in GetTileBoundary().
                 if (tile == Godot.TileMap.InvalidCell &&
                     boundaries[i].x >= -2 && boundaries[i].x < 32)
                 {
-                    SetCell(backgroundTiles, (int)boundaries[i].x, (int)boundaries[i].y, 0);
+                    SetCell(BackgroundTiles, (int)boundaries[i].x, (int)boundaries[i].y, 0);
                 }
             }
         }
 
         private void GenerateEnemyLine()
         {
-            quarterSecondsPassed++;
+            QuarterSecondsPassed++;
 
             // Less than 10 enemies + 1 more per 5 seconds
-            var enemyMax = 10 + (quarterSecondsPassed / 20);
+            var enemyMax = 10 + (QuarterSecondsPassed / 20);
 
             var randomNumberOfEnemies = GD.Randi() % enemyMax;
             for (int i = 0; i < randomNumberOfEnemies; i++)
@@ -86,39 +86,39 @@ namespace Scripts
                 SpawnEnemy();
             }
 
-            if (secondsFraction == 60)
+            if (SecondsFraction == 60)
             {
-                secondsFraction = 0;
+                SecondsFraction = 0;
             }
         }
 
         public void GetInput()
         {
-            velocity = new Vector2();
-            var playerPosition = backgroundTiles.WorldToMap(this.Position);
+            Velocity = new Vector2();
+            var playerPosition = BackgroundTiles.WorldToMap(this.Position);
 
             // Force movement up.
-            velocity.y -= 1.5F;
+            Velocity.y -= 1.5F;
 
             // Add in user movement
-            if ((Input.IsActionPressed("ui_right") || buttonRight.IsPressed()) && playerPosition.x <= 32)
+            if ((Input.IsActionPressed("ui_right") || ButtonRight.IsPressed()) && playerPosition.x <= 32)
             {
-                velocity.x += 1;
+                Velocity.x += 1;
             }
-            if ((Input.IsActionPressed("ui_left") || buttonLeft.IsPressed()) && playerPosition.x > 0)
+            if ((Input.IsActionPressed("ui_left") || ButtonLeft.IsPressed()) && playerPosition.x > 0)
             {
-                velocity.x -= 1;
+                Velocity.x -= 1;
             }
             if (Input.IsActionPressed("ui_down"))
             {
-                velocity.y += 1;
+                Velocity.y += 1;
             }
             if (Input.IsActionPressed("ui_up"))
             {
-                velocity.y -= 1;
+                Velocity.y -= 1;
             }
 
-            velocity *= speed;
+            Velocity *= Speed;
         }
 
         public Vector2 GetSubTileWithPriority(TileMap tileMap, int id)
@@ -172,26 +172,26 @@ namespace Scripts
 
         public virtual void handle_hit()
         {
-            scoreLabel.score += 1;
-            scoreLabel.UpdateScore();
+            ScoreLabel.CurrentScore += 1;
+            ScoreLabel.UpdateScore();
 
-            currentGoalLabel.slimeData = nextGoalLabel.slimeData;
-            currentGoalLabel.UpdateGoal();
+            CurrentGoalLabel.SlimeData = NextGoalLabel.SlimeData;
+            CurrentGoalLabel.UpdateGoal();
 
-            nextGoalLabel.slimeData = ChooseEnemyData();
-            nextGoalLabel.UpdateGoal();
+            NextGoalLabel.SlimeData = ChooseEnemyData();
+            NextGoalLabel.UpdateGoal();
         }
 
         public virtual void handle_hit_death()
         {
-            scoreLabel.ResetScore();
-            quarterSecondsPassed = 0;
-            this.Position = playerStartPosition;
+            ScoreLabel.ResetScore();
+            QuarterSecondsPassed = 0;
+            this.Position = PlayerStartPosition;
 
             RemoveAllEnemies();
 
             // Reset the seconds tracker to refresh the map.
-            secondsFraction = -1;
+            SecondsFraction = -1;
         }
 
         private void MovePlayer()
@@ -199,45 +199,45 @@ namespace Scripts
             AnimationTree myAnimTree = GetNode<AnimationTree>("AnimationTree");
             AnimationNodeStateMachinePlayback stateMachinePlayback = (AnimationNodeStateMachinePlayback)myAnimTree.Get("parameters/playback");
 
-            if (velocity == Vector2.Zero)
+            if (Velocity == Vector2.Zero)
             {
                 stateMachinePlayback.Travel("Idle");
             }
             else
             {
                 stateMachinePlayback.Travel("Walking");
-                myAnimTree.Set("parameters/Idle/blend_position", velocity);
-                myAnimTree.Set("parameters/Walking/blend_position", velocity);
-                MoveAndSlide(velocity);
+                myAnimTree.Set("parameters/Idle/blend_position", Velocity);
+                myAnimTree.Set("parameters/Walking/blend_position", Velocity);
+                MoveAndSlide(Velocity);
 
                 // Janky way of making label not move on screen with Player.
                 if (this.Position.x <= 280)
                 {
-                    scoreLabel.RectGlobalPosition = new Vector2(Math.Max(this.Position.x - scoreLabelPositionDifference, 10), scoreLabel.RectGlobalPosition.y);
+                    ScoreLabel.RectGlobalPosition = new Vector2(Math.Max(this.Position.x - ScoreLabelPositionDifference, 10), ScoreLabel.RectGlobalPosition.y);
                 }
                 // Screen max size - 1 screensize with zoom.
                 else if (this.Position.x >= (1024 - 280))
                 {
-                    scoreLabel.RectGlobalPosition = new Vector2(Math.Min(this.Position.x - scoreLabelPositionDifference, (1024 - 280)), scoreLabel.RectGlobalPosition.y);
+                    ScoreLabel.RectGlobalPosition = new Vector2(Math.Min(this.Position.x - ScoreLabelPositionDifference, (1024 - 280)), ScoreLabel.RectGlobalPosition.y);
                 }
                 else
                 {
-                    scoreLabel.RectGlobalPosition = new Vector2(this.Position.x - scoreLabelPositionDifference, scoreLabel.RectGlobalPosition.y);
+                    ScoreLabel.RectGlobalPosition = new Vector2(this.Position.x - ScoreLabelPositionDifference, ScoreLabel.RectGlobalPosition.y);
                 }
             }
         }
 
         public override void _PhysicsProcess(float delta)
         {
-            secondsFraction += 1;
+            SecondsFraction += 1;
             GetInput();
             MovePlayer();
 
-            if (secondsFraction % 15 == 0)
+            if (SecondsFraction % 15 == 0)
             {
                 DrawBackgroundTiles();
                 RemoveOldBackgroundTiles();
-                backgroundTiles.UpdateBitmaskRegion();
+                BackgroundTiles.UpdateBitmaskRegion();
 
                 GenerateEnemyLine();
                 RemoveAllEnemies(true);
@@ -267,30 +267,30 @@ namespace Scripts
 
         public override void _Ready()
         {
-            backgroundTiles = (TileMap)GetParent().GetNode("StonePath");
-            buttonLeft = (TouchScreenButton)this.GetNode("CanvasLayer").GetNode("ButtonLeft");
-            buttonRight = (TouchScreenButton)this.GetNode("CanvasLayer").GetNode("ButtonRight");
-            enemyList = SlimeData.GetEnemyList();
-            levelLabel = (Level)this.GetNode("LevelLabel");
-            levelLabel.levelData = LevelData.GetLevelList();
-            playerStartPosition = this.Position;
-            scoreLabel = (Score)this.GetNode("UserInterface/ScoreLabel");
+            BackgroundTiles = (TileMap)GetParent().GetNode("StonePath");
+            ButtonLeft = (TouchScreenButton)this.GetNode("CanvasLayer").GetNode("ButtonLeft");
+            ButtonRight = (TouchScreenButton)this.GetNode("CanvasLayer").GetNode("ButtonRight");
+            EnemyList = SlimeData.GetEnemyList();
+            LevelLabel = (Level)this.GetNode("LevelLabel");
+            LevelLabel.levelData = LevelData.GetLevelList();
+            PlayerStartPosition = this.Position;
+            ScoreLabel = (Score)this.GetNode("UserInterface/ScoreLabel");
 
-            currentGoalLabel = (Goal)this.GetNode("UserInterface/CurrentGoalLabel");
-            nextGoalLabel = (Goal)this.GetNode("UserInterface/NextGoalLabel");
+            CurrentGoalLabel = (Goal)this.GetNode("UserInterface/CurrentGoalLabel");
+            NextGoalLabel = (Goal)this.GetNode("UserInterface/NextGoalLabel");
 
-            scoreLabelPositionDifference = (int)(playerStartPosition.x - scoreLabel.RectGlobalPosition.x);
+            ScoreLabelPositionDifference = (int)(PlayerStartPosition.x - ScoreLabel.RectGlobalPosition.x);
             base._Ready();
         }
 
         public void RemoveOldBackgroundTiles()
         {
-            var playerPosition = backgroundTiles.WorldToMap(this.Position);
+            var playerPosition = BackgroundTiles.WorldToMap(this.Position);
             var xMaxValue = 36;
 
             for (int i = -2; i < xMaxValue; i++)
             {
-                backgroundTiles.SetCell(i, (int)playerPosition.y + 5, -1);
+                BackgroundTiles.SetCell(i, (int)playerPosition.y + 5, -1);
             }
         }
 
@@ -303,9 +303,9 @@ namespace Scripts
         private void SetEnemySprite(Slime enemy)
         {
             var enemySprite = (enemy.GetNode("Sprite") as Sprite);
-            enemySprite.Texture = (Texture)GD.Load("res://Texture/Slimes/" + enemy.EnemyData.Slime + ".png");
+            enemySprite.Texture = (Texture)GD.Load("res://Texture/Slimes/" + enemy.SlimeData.Slime + ".png");
 
-            if (enemy.EnemyData.Slime == SlimeTypes.LavaSlime)
+            if (enemy.SlimeData.Slime == SlimeTypes.LavaSlime)
             {
                 enemySprite.Hframes = 8;
             }
@@ -327,7 +327,7 @@ namespace Scripts
                 var newEnemy = newEnemyScene.Instance() as Slime;
 
                 var enemyData = ChooseEnemyData();
-                newEnemy.EnemyData = enemyData;
+                newEnemy.SlimeData = enemyData;
                 SetEnemySprite(newEnemy);
 
                 GetParent().AddChild(newEnemy);

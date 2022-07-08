@@ -6,16 +6,17 @@ namespace Scripts
 
     public class Score : Label
     {
-        public float score = 0;
+        public float CurrentScore = 0;
 
         public void UpdateScore()
         {
-            this.Text = string.Format("Score: {0}", score);
+            this.Text = string.Format("Score: {0}", CurrentScore);
         }
 
         public void ResetScore()
         {
-            score = 0;
+            CurrentScore = 0;
+            this.UpdateScore();
         }
     }
 }
