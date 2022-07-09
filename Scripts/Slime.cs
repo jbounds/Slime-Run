@@ -27,7 +27,7 @@ namespace Scripts
             if (body is Player)
             {
                 var player = (body as Player);
-                var currentGoalLabel = (Goal)GetParent().GetNode("StaticGUI/CurrentGoalLabel");
+                var currentGoalLabel = (Goal)GetParent().GetParent().GetNode("StaticGUI/CurrentGoalLabel");
 
                 if (this.SlimeData.Slime != currentGoalLabel.SlimeData.Slime)
                 {

@@ -14,6 +14,7 @@ namespace Scripts
         public Goal CurrentGoalLabel;
         // Will be updated on menu in future.
         public DifficultyTypes Difficulty = DifficultyTypes.Easy;
+        public Node2D SlimeContainer;
         public List<SlimeData> SlimeList;
         public Level LevelLabel;
         public Goal NextGoalLabel;
@@ -198,7 +199,7 @@ namespace Scripts
 
         public void RemoveAllEnemies(bool singleRow = false)
         {
-            var allNodes = GetParent().GetChildren();
+            var allNodes = SlimeContainer.GetChildren();
             var pixelFallOffPoint = 500;
             for (int i = 0; i < allNodes.Count; i++)
             {
@@ -207,11 +208,11 @@ namespace Scripts
                     var slime = allNodes[i] as Slime;
                     if (singleRow && this.Position.y + pixelFallOffPoint < slime.Position.y)
                     {
-                        GetParent().CallDeferred("remove_child", (Node)allNodes[i]);
+                        SlimeContainer.CallDeferred("remove_child", (Node)allNodes[i]);
                     }
                     else if (!singleRow)
                     {
-                        GetParent().CallDeferred("remove_child", (Node)allNodes[i]);
+                        SlimeContainer.CallDeferred("remove_child", (Node)allNodes[i]);
                     }
                 }
             }
@@ -230,6 +231,8 @@ namespace Scripts
             CurrentGoalLabel = (Goal)GetParent().GetNode("StaticGUI/CurrentGoalLabel");
             NextGoalLabel = (Goal)GetParent().GetNode("StaticGUI/NextGoalLabel");
             StrikesContainer = (StrikesContainer)GetParent().GetNode("StaticGUI/StrikesContainer");
+
+            SlimeContainer = (Node2D)GetParent().GetNode("SlimeContainer");
 
             ScoreLabelPositionDifference = (int)(PlayerStartPosition.x - ScoreLabel.RectGlobalPosition.x);
             base._Ready();
@@ -265,7 +268,7 @@ namespace Scripts
                 newSlime.SlimeData = slimeData;
                 SetSlimeSprite(newSlime);
 
-                GetParent().AddChild(newSlime);
+                SlimeContainer.AddChild(newSlime);
 
                 newSlime.MoveLocalX(randomX);
                 newSlime.MoveLocalY(this.Position.y - newSlimePixelDistanceAhead);
