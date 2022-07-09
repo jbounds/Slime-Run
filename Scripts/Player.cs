@@ -176,20 +176,7 @@ namespace Scripts
 
         private void MovePlayer()
         {
-            AnimationTree myAnimTree = GetNode<AnimationTree>("AnimationTree");
-            AnimationNodeStateMachinePlayback stateMachinePlayback = (AnimationNodeStateMachinePlayback)myAnimTree.Get("parameters/playback");
-
-            if (Velocity == Vector2.Zero)
-            {
-                stateMachinePlayback.Travel("Idle");
-            }
-            else
-            {
-                stateMachinePlayback.Travel("Walking");
-                myAnimTree.Set("parameters/Idle/blend_position", Velocity);
-                myAnimTree.Set("parameters/Walking/blend_position", Velocity);
-                MoveAndSlide(Velocity);
-            }
+            MoveAndSlide(Velocity);
         }
 
         public override void _PhysicsProcess(float delta)

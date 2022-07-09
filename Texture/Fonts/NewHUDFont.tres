@@ -1,7 +1,7 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[ext_resource path="res://Texture/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Texture/Fonts/HUD Font 2.tres" type="DynamicFontData" id=1]
 
 [resource]
-size = 23
+size = 21
 font_data = ExtResource( 1 )

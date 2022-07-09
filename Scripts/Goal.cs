@@ -3,7 +3,7 @@ using Scripts.Enums;
 
 namespace Scripts
 {
-    public class Goal : RichTextLabel
+    public class Goal : NinePatchRect
     {
         public Sprite Slime;
         public SlimeData SlimeData;

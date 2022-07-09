@@ -1,24 +1,20 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/StrikesContainer.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Goal.cs" type="Script" id=2]
-[ext_resource path="res://Texture/Fonts/NextSlimeFont.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Texture/Fonts/RogerexMediumFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Texture/GUI/NineSliceGUIBox.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Score.cs" type="Script" id=5]
 [ext_resource path="res://Texture/Slimes/BasicSlime.png" type="Texture" id=6]
-
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 1, 1, 1, 0.27451 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
-anti_aliasing = false
+[ext_resource path="res://Texture/Fonts/NewHUDFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Texture/Fonts/HUD Font 2.tres" type="DynamicFontData" id=8]
+[ext_resource path="res://Scenes/ScoreFont.tres" type="DynamicFont" id=9]
 
 [sub_resource type="StreamTexture" id=9]
-flags = 4
 load_path = "res://.import/BasicSlime.png-7a2b1be9e19a526f078ba32320313053.stex"
+
+[sub_resource type="DynamicFont" id=15]
+size = 21
+font_data = ExtResource( 8 )
 
 [node name="UserInterface" type="Control"]
 anchor_right = 1.0
@@ -26,23 +22,38 @@ anchor_bottom = 1.0
 rect_scale = Vector2( 2, 2 )
 
 [node name="ScoreLabel" type="Label" parent="."]
-margin_left = 22.0
-margin_top = 20.0
-margin_right = 73.0
-margin_bottom = 34.0
+margin_left = 16.0
+margin_right = 84.0
+margin_bottom = 16.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 9 )
 text = "Score: 0"
+valign = 1
 script = ExtResource( 5 )
 
-[node name="CurrentGoalLabel" type="RichTextLabel" parent="."]
-margin_left = 184.5
-margin_right = 287.5
+[node name="CurrentGoalLabel" type="NinePatchRect" parent="."]
+margin_left = 185.0
+margin_right = 288.0
 margin_bottom = 75.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_fonts/normal_font = ExtResource( 4 )
-custom_styles/normal = SubResource( 7 )
-text = "Current"
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="CurrentGoalLabel"]
+margin_left = 4.0
+margin_top = 2.5
+margin_right = 98.0
+margin_bottom = 26.5
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Current"
+align = 1
+valign = 1
 
 [node name="Slime" type="Sprite" parent="CurrentGoalLabel"]
 position = Vector2( 52, 43 )
@@ -50,17 +61,30 @@ scale = Vector2( 1.5, 1.5 )
 texture = SubResource( 9 )
 hframes = 12
 
-[node name="NextGoalLabel" type="RichTextLabel" parent="."]
+[node name="NextGoalLabel" type="NinePatchRect" parent="."]
 margin_left = 229.5
 margin_top = 76.0
 margin_right = 287.5
 margin_bottom = 131.0
-size_flags_vertical = 4
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_fonts/normal_font = ExtResource( 3 )
-custom_styles/normal = SubResource( 7 )
-text = "Next"
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="NextGoalLabel"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 56.0
+margin_bottom = 25.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "Next"
+align = 1
+valign = 1
 
 [node name="Slime" type="Sprite" parent="NextGoalLabel"]
 position = Vector2( 29, 31 )
@@ -68,9 +92,10 @@ texture = ExtResource( 6 )
 hframes = 12
 
 [node name="StrikesContainer" type="Control" parent="."]
-margin_left = 118.5
-margin_right = 248.5
-margin_bottom = 40.0
+margin_left = 16.0
+margin_top = 18.075
+margin_right = 146.0
+margin_bottom = 58.075
 rect_scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
 
@@ -91,3 +116,7 @@ position = Vector2( 204, 51 )
 texture = SubResource( 9 )
 offset = Vector2( -99, -35 )
 hframes = 12
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
