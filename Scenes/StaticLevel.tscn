@@ -7,17 +7,19 @@
 
 [node name="Node2D" type="Node2D"]
 
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 282.0
+margin_bottom = 501.0
+rect_scale = Vector2( 2.04253, 2.04391 )
+texture = ExtResource( 4 )
+
+[node name="SlimeContainer" type="Node2D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 288, 888 )
 z_index = 1
 
 [node name="CanvasLayer" parent="Player" instance=ExtResource( 3 )]
-
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_scale = Vector2( 2.04253, 2.04391 )
-texture = ExtResource( 4 )
 
 [node name="StaticGUI" parent="." instance=ExtResource( 2 )]
 

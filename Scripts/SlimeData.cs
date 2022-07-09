@@ -16,7 +16,7 @@ namespace Scripts
         public int MinLevel;
         public SlimeTypes Slime;
 
-        public static System.Collections.Generic.List<SlimeData> GetEnemyList()
+        public static System.Collections.Generic.List<SlimeData> GetSlimeList()
         {
             var enemyList = new System.Collections.Generic.List<SlimeData>();
 

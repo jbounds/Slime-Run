@@ -14,7 +14,7 @@ namespace Scripts
         public Goal CurrentGoalLabel;
         // Will be updated on menu in future.
         public DifficultyTypes Difficulty = DifficultyTypes.Easy;
-        public List<SlimeData> EnemyList;
+        public List<SlimeData> SlimeList;
         public Level LevelLabel;
         public Goal NextGoalLabel;
         public Vector2 PlayerStartPosition = new Vector2();
@@ -22,51 +22,50 @@ namespace Scripts
         public Score ScoreLabel;
         public int ScoreLabelPositionDifference = 0;
         public int SecondsFraction = 0;
-        public int Speed = 200;
+        public int Speed = 300;
         public StrikesContainer StrikesContainer;
         public Vector2 Velocity = new Vector2();
 
-        public SlimeData ChooseEnemyData()
+        public SlimeData ChooseSlimeData()
         {
-            return EnemyList[(int)(GD.Randi() % (EnemyList.FindLastIndex(a => a.AssociatedDifficulty == Difficulty) + 1))];
+            return SlimeList[(int)(GD.Randi() % (SlimeList.FindLastIndex(a => a.AssociatedDifficulty == Difficulty) + 1))];
         }
 
         public bool DenyOverlappingSpawn(uint xPosition, float yPosition)
         {
             var allNodes = GetParent().GetChildren();
-            var enemyList = new List<Slime>();
+            var slimeList = new List<Slime>();
+            var slimeWidth = 64;
 
             for (int i = 0; i < allNodes.Count; i++)
             {
                 if (allNodes[i] is Slime)
                 {
-                    var enemy = allNodes[i] as Slime;
-                    if (enemy.Position.y == yPosition)
+                    var slime = allNodes[i] as Slime;
+                    if (slime.Position.y == yPosition)
                     {
-                        enemyList.Add(enemy);
+                        slimeList.Add(slime);
                     }
                 }
             }
 
-            // Don't spawn the enemy if it is colliding with another enemy (can maybe check collision method rather than this.)
-            if (enemyList.Any(a => a.Position.x > xPosition - 32 && a.Position.x < xPosition + 32))
+            // Don't spawn the slime if it is colliding with another slime (can maybe check collision method rather than this.)
+            if (slimeList.Any(a => a.Position.x > xPosition - slimeWidth && a.Position.x < xPosition + slimeWidth))
             {
                 return true;
             }
             return false;
         }
 
-        private void GenerateEnemyLine()
+        private void GenerateSlimeLine()
         {
-            QuarterSecondsPassed++;
+            // 1 or less enemies + a max of 1 more per 5 seconds.
+            var slimeMax = 1 + (QuarterSecondsPassed / 20);
 
-            // Less than 10 enemies + 1 more per 5 seconds
-            var enemyMax = 5 + (QuarterSecondsPassed / 20);
-
-            var randomNumberOfEnemies = GD.Randi() % enemyMax;
+            var randomNumberOfEnemies = GD.Randi() % slimeMax;
             for (int i = 0; i < randomNumberOfEnemies; i++)
             {
-                SpawnEnemy();
+                SpawnSlime();
             }
 
             if (SecondsFraction == 60)
@@ -79,13 +78,14 @@ namespace Scripts
         {
             Velocity = new Vector2();
             var playerPosition = this.Position;
+            var edgeOfScreenBuffer = 10;
 
             // Add in user movement
-            if ((Input.IsActionPressed("ui_right") || ButtonRight.IsPressed()) && playerPosition.x <= GetViewport().Size.x)
+            if ((Input.IsActionPressed("ui_right") || ButtonRight.IsPressed()) && playerPosition.x <= GetViewport().Size.x - edgeOfScreenBuffer)
             {
                 Velocity.x += 1;
             }
-            if ((Input.IsActionPressed("ui_left") || ButtonLeft.IsPressed()) && playerPosition.x > 0)
+            if ((Input.IsActionPressed("ui_left") || ButtonLeft.IsPressed()) && playerPosition.x > 0 + edgeOfScreenBuffer)
             {
                 Velocity.x -= 1;
             }
@@ -150,7 +150,7 @@ namespace Scripts
             CurrentGoalLabel.SlimeData = NextGoalLabel.SlimeData;
             CurrentGoalLabel.UpdateGoal();
 
-            NextGoalLabel.SlimeData = ChooseEnemyData();
+            NextGoalLabel.SlimeData = ChooseSlimeData();
             NextGoalLabel.UpdateGoal();
         }
 
@@ -200,7 +200,11 @@ namespace Scripts
 
             if (SecondsFraction % 15 == 0)
             {
-                GenerateEnemyLine();
+                QuarterSecondsPassed++;
+            }
+            else if (SecondsFraction % 20 == 0)
+            {
+                GenerateSlimeLine();
                 RemoveAllEnemies(true);
             }
         }
@@ -213,8 +217,8 @@ namespace Scripts
             {
                 if (allNodes[i] is Slime)
                 {
-                    var enemy = allNodes[i] as Slime;
-                    if (singleRow && this.Position.y + pixelFallOffPoint < enemy.Position.y)
+                    var slime = allNodes[i] as Slime;
+                    if (singleRow && this.Position.y + pixelFallOffPoint < slime.Position.y)
                     {
                         GetParent().CallDeferred("remove_child", (Node)allNodes[i]);
                     }
@@ -230,7 +234,7 @@ namespace Scripts
         {
             ButtonLeft = (TouchScreenButton)this.GetNode("CanvasLayer").GetNode("ButtonLeft");
             ButtonRight = (TouchScreenButton)this.GetNode("CanvasLayer").GetNode("ButtonRight");
-            EnemyList = SlimeData.GetEnemyList();
+            SlimeList = SlimeData.GetSlimeList();
             LevelLabel = (Level)this.GetNode("LevelLabel");
             LevelLabel.levelData = LevelData.GetLevelList();
             PlayerStartPosition = this.Position;
@@ -244,40 +248,40 @@ namespace Scripts
             base._Ready();
         }
 
-        private void SetEnemySprite(Slime enemy)
+        private void SetSlimeSprite(Slime slime)
         {
-            var enemySprite = (enemy.GetNode("Sprite") as Sprite);
-            enemySprite.Texture = (Texture)GD.Load("res://Texture/Slimes/" + enemy.SlimeData.Slime + ".png");
+            var slimeSprite = (slime.GetNode("Sprite") as Sprite);
+            slimeSprite.Texture = (Texture)GD.Load("res://Texture/Slimes/" + slime.SlimeData.Slime + ".png");
 
-            if (enemy.SlimeData.Slime == SlimeTypes.LavaSlime)
+            if (slime.SlimeData.Slime == SlimeTypes.LavaSlime)
             {
-                enemySprite.Hframes = 8;
+                slimeSprite.Hframes = 8;
             }
         }
 
-        public void SpawnEnemy()
+        public void SpawnSlime()
         {
             // 32 pixel buffer for edges of screen.
             var randomX = (uint)((GD.Randi() % (GetViewport().Size.x - 32)) + 32);
-            var newEnemyPixelDistanceAhead = GetViewport().Size.y;
+            var newSlimePixelDistanceAhead = GetViewport().Size.y;
 
-            if (DenyOverlappingSpawn(randomX, this.Position.y - newEnemyPixelDistanceAhead))
+            if (DenyOverlappingSpawn(randomX, this.Position.y - newSlimePixelDistanceAhead))
             {
                 return;
             }
             else
             {
-                var newEnemyScene = GD.Load("res://Scenes//Enemy.tscn") as PackedScene;
-                var newEnemy = newEnemyScene.Instance() as Slime;
+                var newSlimeScene = GD.Load("res://Scenes//Slime.tscn") as PackedScene;
+                var newSlime = newSlimeScene.Instance() as Slime;
 
-                var enemyData = ChooseEnemyData();
-                newEnemy.SlimeData = enemyData;
-                SetEnemySprite(newEnemy);
+                var slimeData = ChooseSlimeData();
+                newSlime.SlimeData = slimeData;
+                SetSlimeSprite(newSlime);
 
-                GetParent().AddChild(newEnemy);
+                GetParent().AddChild(newSlime);
 
-                newEnemy.MoveLocalX(randomX);
-                newEnemy.MoveLocalY(this.Position.y - newEnemyPixelDistanceAhead);
+                newSlime.MoveLocalX(randomX);
+                newSlime.MoveLocalY(this.Position.y - newSlimePixelDistanceAhead);
             }
         }
     }

@@ -5,6 +5,7 @@
 [ext_resource path="res://Texture/Fonts/NextSlimeFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Texture/Fonts/RogerexMediumFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Scripts/Score.cs" type="Script" id=5]
+[ext_resource path="res://Texture/Slimes/BasicSlime.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 1, 1, 1, 0.27451 )
@@ -19,13 +20,10 @@ anti_aliasing = false
 flags = 4
 load_path = "res://.import/BasicSlime.png-7a2b1be9e19a526f078ba32320313053.stex"
 
-[sub_resource type="StreamTexture" id=8]
-flags = 4
-load_path = "res://.import/FoxSlime.png-af382b0f2e2de65192523da4fed6aaef.stex"
-
 [node name="UserInterface" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_scale = Vector2( 2, 2 )
 
 [node name="ScoreLabel" type="Label" parent="."]
 margin_left = 22.0
@@ -37,8 +35,8 @@ text = "Score: 0"
 script = ExtResource( 5 )
 
 [node name="CurrentGoalLabel" type="RichTextLabel" parent="."]
-margin_left = 473.0
-margin_right = 576.0
+margin_left = 184.5
+margin_right = 287.5
 margin_bottom = 75.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/normal_font = ExtResource( 4 )
@@ -53,9 +51,9 @@ texture = SubResource( 9 )
 hframes = 12
 
 [node name="NextGoalLabel" type="RichTextLabel" parent="."]
-margin_left = 518.0
+margin_left = 229.5
 margin_top = 76.0
-margin_right = 576.0
+margin_right = 287.5
 margin_bottom = 131.0
 size_flags_vertical = 4
 custom_colors/default_color = Color( 0, 0, 0, 1 )
@@ -66,12 +64,12 @@ script = ExtResource( 2 )
 
 [node name="Slime" type="Sprite" parent="NextGoalLabel"]
 position = Vector2( 29, 31 )
-texture = SubResource( 8 )
+texture = ExtResource( 6 )
 hframes = 12
 
 [node name="StrikesContainer" type="Control" parent="."]
-margin_left = 407.0
-margin_right = 537.0
+margin_left = 118.5
+margin_right = 248.5
 margin_bottom = 40.0
 rect_scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
