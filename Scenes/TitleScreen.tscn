@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Texture/GUI/SlimeFallsTitle.png" type="Texture" id=1]
 [ext_resource path="res://Texture/Fonts/PeaberryBase.ttf" type="DynamicFontData" id=2]
@@ -7,10 +7,118 @@
 [ext_resource path="res://Texture/GUI/Buttons/btnRectBase.png" type="Texture" id=5]
 [ext_resource path="res://Texture/GUI/Buttons/btnSquareBase.png" type="Texture" id=6]
 [ext_resource path="res://Texture/GUI/Buttons/SettingsGear.png" type="Texture" id=7]
+[ext_resource path="res://Texture/Slimes/WaterSlime.png" type="Texture" id=8]
+[ext_resource path="res://Texture/GUI/Slimes/FoxSlimeIdle.png" type="Texture" id=9]
+[ext_resource path="res://Texture/Slimes/SlimeShadow.png" type="Texture" id=10]
+[ext_resource path="res://Texture/GUI/Slimes/PufferInWater/PufferInWater.tres" type="Texture" id=11]
+
+[sub_resource type="Theme" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 outline_color = Color( 0.639216, 0.368627, 0.25098, 1 )
 font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../ShadowWaterSlime:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "WaterSlimeTitleScreen"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../ShadowWaterSlime:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 2.35
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.35, 0.45, 0.8, 0.9, 1.25, 1.6, 1.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "WaterSlimeTitleScreen"
+length = 1.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../ShadowFoxSlime:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+}
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -46,15 +154,18 @@ margin_bottom = 530.0
 rect_scale = Vector2( 3, 3 )
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme = SubResource( 2 )
+toggle_mode = true
+shortcut_in_tooltip = false
 texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Start"]
-margin_left = -24.2857
-margin_top = -9.37137
-margin_right = 23.7143
-margin_bottom = 6.62863
+margin_left = -28.0
+margin_top = -12.0
+margin_right = 28.0
+margin_bottom = 9.0
 custom_colors/font_color = Color( 0.760784, 0.490196, 0.333333, 1 )
 custom_colors/font_color_shadow = Color( 0.639216, 0.368627, 0.25098, 1 )
 custom_constants/shadow_offset_x = 0
@@ -73,17 +184,17 @@ margin_top = 661.0
 margin_right = 288.0
 margin_bottom = 661.0
 rect_scale = Vector2( 2, 2 )
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 0
 texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Exit"]
-margin_left = -24.2857
-margin_top = -8.85713
-margin_right = 23.7143
-margin_bottom = 7.14287
+margin_left = -28.0
+margin_top = -12.0
+margin_right = 28.0
+margin_bottom = 9.0
 custom_colors/font_color = Color( 0.760784, 0.490196, 0.333333, 1 )
 custom_colors/font_color_shadow = Color( 0.639216, 0.368627, 0.25098, 1 )
 custom_constants/shadow_offset_x = 0
@@ -109,3 +220,45 @@ stretch_mode = 3
 position = Vector2( 0, -1.5 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 7 )
+
+[node name="ShadowWaterSlime" type="Sprite" parent="."]
+position = Vector2( 505, 680 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 10 )
+hframes = 12
+
+[node name="WaterSlime" type="Sprite" parent="."]
+position = Vector2( 507, 683 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+hframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WaterSlime"]
+anims/RESET = SubResource( 3 )
+anims/WaterSlimeTitleScreen = SubResource( 4 )
+
+[node name="ShadowFoxSlime" type="Sprite" parent="."]
+visible = false
+position = Vector2( 99, 447 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 10 )
+hframes = 12
+
+[node name="FoxSlime" type="Sprite" parent="."]
+position = Vector2( 126, 455 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 9 )
+hframes = 8
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FoxSlime"]
+anims/RESET = SubResource( 5 )
+anims/WaterSlimeTitleScreen = SubResource( 6 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 147.0
+margin_top = 797.0
+margin_right = 211.0
+margin_bottom = 845.0
+rect_scale = Vector2( 3, 3 )
+texture = ExtResource( 11 )

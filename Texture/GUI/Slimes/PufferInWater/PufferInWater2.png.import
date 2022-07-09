@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/WaterSlime.png-e3c09d3786364bbcc678ee253cfa6a78.stex"
+path="res://.import/PufferInWater2.png-90ec71385fd7ecd0816d27e8bd1c1732.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texture/Slimes/WaterSlime.png"
-dest_files=[ "res://.import/WaterSlime.png-e3c09d3786364bbcc678ee253cfa6a78.stex" ]
+source_file="res://Texture/GUI/Slimes/PufferInWater/PufferInWater2.png"
+dest_files=[ "res://.import/PufferInWater2.png-90ec71385fd7ecd0816d27e8bd1c1732.stex" ]
 
 [params]
 

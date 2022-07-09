@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/WaterSlime.png-e3c09d3786364bbcc678ee253cfa6a78.stex"
+path="res://.import/SlimeShadow.png-47800e058406ee2351dbe88f190d4946.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texture/Slimes/WaterSlime.png"
-dest_files=[ "res://.import/WaterSlime.png-e3c09d3786364bbcc678ee253cfa6a78.stex" ]
+source_file="res://Texture/Slimes/SlimeShadow.png"
+dest_files=[ "res://.import/SlimeShadow.png-47800e058406ee2351dbe88f190d4946.stex" ]
 
 [params]
 
