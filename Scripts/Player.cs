@@ -11,19 +11,19 @@ namespace Scripts
     {
         public TouchScreenButton ButtonLeft;
         public TouchScreenButton ButtonRight;
-        public Goal CurrentGoalLabel = null;
+        public Goal CurrentGoalLabel;
         // Will be updated on menu in future.
         public DifficultyTypes Difficulty = DifficultyTypes.Easy;
         public List<SlimeData> EnemyList;
-        public Level LevelLabel = null;
-        public Goal NextGoalLabel = null;
+        public Level LevelLabel;
+        public Goal NextGoalLabel;
         public Vector2 PlayerStartPosition = new Vector2();
         public uint QuarterSecondsPassed = 0;
-        public Score ScoreLabel = null;
+        public Score ScoreLabel;
         public int ScoreLabelPositionDifference = 0;
         public int SecondsFraction = 0;
         public int Speed = 200;
-        public StrikesContainer StrikesContainer = null;
+        public StrikesContainer StrikesContainer;
         public Vector2 Velocity = new Vector2();
 
         public SlimeData ChooseEnemyData()
@@ -61,7 +61,7 @@ namespace Scripts
             QuarterSecondsPassed++;
 
             // Less than 10 enemies + 1 more per 5 seconds
-            var enemyMax = 10 + (QuarterSecondsPassed / 20);
+            var enemyMax = 5 + (QuarterSecondsPassed / 20);
 
             var randomNumberOfEnemies = GD.Randi() % enemyMax;
             for (int i = 0; i < randomNumberOfEnemies; i++)
@@ -257,9 +257,9 @@ namespace Scripts
 
         public void SpawnEnemy()
         {
-            // 1 Box (32 pixels) can't be used, shift to right 1 box.
-            var randomX = (GD.Randi() % 1024) + 32;
-            var newEnemyPixelDistanceAhead = 800;
+            // 32 pixel buffer for edges of screen.
+            var randomX = (uint)((GD.Randi() % (GetViewport().Size.x - 32)) + 32);
+            var newEnemyPixelDistanceAhead = GetViewport().Size.y;
 
             if (DenyOverlappingSpawn(randomX, this.Position.y - newEnemyPixelDistanceAhead))
             {
