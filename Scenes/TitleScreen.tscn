@@ -16,13 +16,15 @@ font_data = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+
+[node name="Background" type="TextureRect" parent="."]
 margin_right = 576.0
 margin_bottom = 1024.0
 texture = ExtResource( 3 )
 stretch_mode = 4
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="Foreground" type="TextureRect" parent="."]
 margin_top = 400.0
 margin_right = 288.0
 margin_bottom = 712.0
