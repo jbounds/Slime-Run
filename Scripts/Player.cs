@@ -9,7 +9,6 @@ namespace Scripts
 
     public class Player : KinematicBody2D
     {
-        public TileMap BackgroundTiles = null;
         public TouchScreenButton ButtonLeft;
         public TouchScreenButton ButtonRight;
         public Goal CurrentGoalLabel = null;
@@ -57,25 +56,6 @@ namespace Scripts
             return false;
         }
 
-        public void DrawBackgroundTiles()
-        {
-            var playerPosition = BackgroundTiles.WorldToMap(this.Position);
-            var boundaries = GetTileBoundary(playerPosition);
-
-            for (int i = 0; i < boundaries.Count; i++)
-            {
-                var tile = BackgroundTiles.GetCell((int)boundaries[i].x, (int)boundaries[i].y);
-
-                // If the Tile doesn't exist, create a new tile.
-                // Use my game's X camera range. A little lazy - could do soemthing in GetTileBoundary().
-                if (tile == Godot.TileMap.InvalidCell &&
-                    boundaries[i].x >= -2 && boundaries[i].x < 32)
-                {
-                    SetCell(BackgroundTiles, (int)boundaries[i].x, (int)boundaries[i].y, 0);
-                }
-            }
-        }
-
         private void GenerateEnemyLine()
         {
             QuarterSecondsPassed++;
@@ -98,27 +78,16 @@ namespace Scripts
         public void GetInput()
         {
             Velocity = new Vector2();
-            var playerPosition = BackgroundTiles.WorldToMap(this.Position);
-
-            // Force movement up.
-            Velocity.y -= 1.5F;
+            var playerPosition = this.Position;
 
             // Add in user movement
-            if ((Input.IsActionPressed("ui_right") || ButtonRight.IsPressed()) && playerPosition.x <= 32)
+            if ((Input.IsActionPressed("ui_right") || ButtonRight.IsPressed()) && playerPosition.x <= GetViewport().Size.x)
             {
                 Velocity.x += 1;
             }
             if ((Input.IsActionPressed("ui_left") || ButtonLeft.IsPressed()) && playerPosition.x > 0)
             {
                 Velocity.x -= 1;
-            }
-            if (Input.IsActionPressed("ui_down"))
-            {
-                Velocity.y += 1;
-            }
-            if (Input.IsActionPressed("ui_up"))
-            {
-                Velocity.y -= 1;
             }
 
             Velocity *= Speed;
@@ -220,21 +189,6 @@ namespace Scripts
                 myAnimTree.Set("parameters/Idle/blend_position", Velocity);
                 myAnimTree.Set("parameters/Walking/blend_position", Velocity);
                 MoveAndSlide(Velocity);
-
-                // Janky way of making label not move on screen with Player.
-                if (this.Position.x <= 280)
-                {
-                    ScoreLabel.RectGlobalPosition = new Vector2(Math.Max(this.Position.x - ScoreLabelPositionDifference, 10), ScoreLabel.RectGlobalPosition.y);
-                }
-                // Screen max size - 1 screensize with zoom.
-                else if (this.Position.x >= (1024 - 280))
-                {
-                    ScoreLabel.RectGlobalPosition = new Vector2(Math.Min(this.Position.x - ScoreLabelPositionDifference, (1024 - 280)), ScoreLabel.RectGlobalPosition.y);
-                }
-                else
-                {
-                    ScoreLabel.RectGlobalPosition = new Vector2(this.Position.x - ScoreLabelPositionDifference, ScoreLabel.RectGlobalPosition.y);
-                }
             }
         }
 
@@ -246,10 +200,6 @@ namespace Scripts
 
             if (SecondsFraction % 15 == 0)
             {
-                DrawBackgroundTiles();
-                RemoveOldBackgroundTiles();
-                BackgroundTiles.UpdateBitmaskRegion();
-
                 GenerateEnemyLine();
                 RemoveAllEnemies(true);
             }
@@ -278,38 +228,20 @@ namespace Scripts
 
         public override void _Ready()
         {
-            BackgroundTiles = (TileMap)GetParent().GetNode("StonePath");
             ButtonLeft = (TouchScreenButton)this.GetNode("CanvasLayer").GetNode("ButtonLeft");
             ButtonRight = (TouchScreenButton)this.GetNode("CanvasLayer").GetNode("ButtonRight");
             EnemyList = SlimeData.GetEnemyList();
             LevelLabel = (Level)this.GetNode("LevelLabel");
             LevelLabel.levelData = LevelData.GetLevelList();
             PlayerStartPosition = this.Position;
-            ScoreLabel = (Score)this.GetNode("UserInterface/ScoreLabel");
+            ScoreLabel = (Score)GetParent().GetNode("StaticGUI/ScoreLabel");
 
-            CurrentGoalLabel = (Goal)this.GetNode("UserInterface/CurrentGoalLabel");
-            NextGoalLabel = (Goal)this.GetNode("UserInterface/NextGoalLabel");
-            StrikesContainer = (StrikesContainer)this.GetNode("UserInterface/StrikesContainer");
+            CurrentGoalLabel = (Goal)GetParent().GetNode("StaticGUI/CurrentGoalLabel");
+            NextGoalLabel = (Goal)GetParent().GetNode("StaticGUI/NextGoalLabel");
+            StrikesContainer = (StrikesContainer)GetParent().GetNode("StaticGUI/StrikesContainer");
 
             ScoreLabelPositionDifference = (int)(PlayerStartPosition.x - ScoreLabel.RectGlobalPosition.x);
             base._Ready();
-        }
-
-        public void RemoveOldBackgroundTiles()
-        {
-            var playerPosition = BackgroundTiles.WorldToMap(this.Position);
-            var xMaxValue = 36;
-
-            for (int i = -2; i < xMaxValue; i++)
-            {
-                BackgroundTiles.SetCell(i, (int)playerPosition.y + 5, -1);
-            }
-        }
-
-        public void SetCell(TileMap tileMap, int x, int y, int id)
-        {
-            // An index of -1 clears the cell. This is not used here.
-            tileMap.SetCell(x, y, id, false, false, false, GetSubTileWithPriority(tileMap, id));
         }
 
         private void SetEnemySprite(Slime enemy)

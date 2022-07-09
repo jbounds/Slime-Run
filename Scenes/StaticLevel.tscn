@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/StaticGUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/DirectionalButtons.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Texture/GUI/Waterfall/WaterfallBG.tres" type="Texture" id=4]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 288, 888 )
+z_index = 1
+
+[node name="CanvasLayer" parent="Player" instance=ExtResource( 3 )]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 2.04253, 2.04391 )
+texture = ExtResource( 4 )
+
+[node name="StaticGUI" parent="." instance=ExtResource( 2 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, 512 )
+rotating = true
+current = true
+limit_left = 0
+limit_right = 1080
