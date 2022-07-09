@@ -16,8 +16,6 @@ font_data = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-
 [node name="Background" type="TextureRect" parent="."]
 margin_right = 576.0
 margin_bottom = 1024.0
@@ -32,45 +30,27 @@ rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 expand = true
 
-[node name="Menu" type="VBoxContainer" parent="."]
+[node name="Logo" type="TextureRect" parent="."]
 margin_left = 17.0
-margin_top = 17.0
+margin_top = 126.0
 margin_right = 559.0
-margin_bottom = 1007.0
-
-[node name="Logo" type="TextureRect" parent="Menu"]
-anchor_top = 0.110101
-anchor_bottom = 0.110101
-margin_right = 542.0
-margin_bottom = 269.0
+margin_bottom = 395.0
 texture = ExtResource( 1 )
 stretch_mode = 4
 
-[node name="CenterRow" type="HBoxContainer" parent="Menu"]
-margin_top = 273.0
-margin_right = 542.0
-margin_bottom = 990.0
-size_flags_vertical = 3
-
-[node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
-margin_right = 542.0
-margin_bottom = 717.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Start" type="TextureButton" parent="Menu/CenterRow/Buttons"]
-anchor_top = 0.329149
-anchor_bottom = 0.329149
-margin_left = 271.0
-margin_right = 271.0
-rect_scale = Vector2( 3.5, 3.5 )
+[node name="Start" type="TextureButton" parent="."]
+margin_left = 288.0
+margin_top = 530.0
+margin_right = 288.0
+margin_bottom = 530.0
+rect_scale = Vector2( 3, 3 )
 size_flags_horizontal = 4
 size_flags_vertical = 0
 texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="Menu/CenterRow/Buttons/Start"]
+[node name="Label" type="Label" parent="Start"]
 margin_left = -24.2857
 margin_top = -9.37137
 margin_right = 23.7143
@@ -87,21 +67,19 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Exit" type="TextureButton" parent="Menu/CenterRow/Buttons"]
-anchor_top = 0.502092
-anchor_bottom = 0.502092
-margin_left = 271.0
-margin_top = 4.0
-margin_right = 271.0
-margin_bottom = 4.0
-rect_scale = Vector2( 2.5, 2.5 )
+[node name="Exit" type="TextureButton" parent="."]
+margin_left = 288.0
+margin_top = 661.0
+margin_right = 288.0
+margin_bottom = 661.0
+rect_scale = Vector2( 2, 2 )
 size_flags_horizontal = 4
 size_flags_vertical = 0
 texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="Menu/CenterRow/Buttons/Exit"]
+[node name="Label" type="Label" parent="Exit"]
 margin_left = -24.2857
 margin_top = -8.85713
 margin_right = 23.7143
@@ -115,23 +93,19 @@ text = "Exit"
 align = 1
 valign = 1
 
-[node name="Settings" type="TextureButton" parent="Menu/CenterRow/Buttons"]
-anchor_left = 0.0129151
-anchor_top = 0.0111576
-anchor_right = 0.0129151
-anchor_bottom = 0.0111576
-margin_left = 480.0
-margin_top = 650.0
-margin_right = 480.0
-margin_bottom = 650.0
-rect_scale = Vector2( 2.5, 2.5 )
+[node name="Settings" type="TextureButton" parent="."]
+margin_left = 502.0
+margin_top = 951.0
+margin_right = 502.0
+margin_bottom = 951.0
+rect_scale = Vector2( 2, 2 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture_normal = ExtResource( 6 )
 expand = true
 stretch_mode = 3
 
-[node name="Sprite" type="Sprite" parent="Menu/CenterRow/Buttons/Settings"]
+[node name="Sprite" type="Sprite" parent="Settings"]
 position = Vector2( 0, -1.5 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 7 )
