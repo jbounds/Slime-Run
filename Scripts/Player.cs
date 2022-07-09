@@ -78,7 +78,7 @@ namespace Scripts
         {
             Velocity = new Vector2();
             var playerPosition = this.Position;
-            var edgeOfScreenBuffer = 10;
+            var edgeOfScreenBuffer = 20;
 
             // Add in user movement
             if ((Input.IsActionPressed("ui_right") || ButtonRight.IsPressed()) && playerPosition.x <= GetViewport().Size.x - edgeOfScreenBuffer)
