@@ -34,19 +34,16 @@ namespace Scripts
 
         public bool DenyOverlappingSpawn(uint xPosition, float yPosition)
         {
-            var allNodes = GetParent().GetChildren();
+            var allSlimes = SlimeContainer.GetChildren();
             var slimeList = new List<Slime>();
             var slimeWidth = 64;
 
-            for (int i = 0; i < allNodes.Count; i++)
+            for (int i = 0; i < allSlimes.Count; i++)
             {
-                if (allNodes[i] is Slime)
+                var slime = allSlimes[i] as Slime;
+                if (slime.Position.y == yPosition)
                 {
-                    var slime = allNodes[i] as Slime;
-                    if (slime.Position.y == yPosition)
-                    {
-                        slimeList.Add(slime);
-                    }
+                    slimeList.Add(slime);
                 }
             }
 
