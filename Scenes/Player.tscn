@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Texture/Basket.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=2]
@@ -9,17 +9,10 @@
 extents = Vector2( 14.2545, 0.75 )
 
 [sub_resource type="CapsuleShape2D" id=41]
+height = 210.0
 
 [sub_resource type="CapsuleShape2D" id=42]
-
-[sub_resource type="RectangleShape2D" id=43]
-extents = Vector2( 10, 8.75 )
-
-[sub_resource type="RectangleShape2D" id=44]
-extents = Vector2( 10, 8.75 )
-
-[sub_resource type="RectangleShape2D" id=45]
-extents = Vector2( 10, 16.4444 )
+height = 307.708
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 scale = Vector2( 2.25, 2 )
@@ -52,27 +45,17 @@ position = Vector2( -0.475151, 0 )
 shape = SubResource( 40 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -17.7778, -9.5 )
+position = Vector2( -17.7778, 0 )
 scale = Vector2( 0.1, 0.1 )
 shape = SubResource( 41 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 17.7778, -9.5 )
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="."]
+position = Vector2( 17.7778, 0 )
+scale = Vector2( 0.1, 0.1 )
+shape = SubResource( 41 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="."]
+position = Vector2( 0.0590286, 10.5021 )
+rotation = 1.5708
 scale = Vector2( 0.1, 0.1 )
 shape = SubResource( 42 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2( -17.7778, 1.75 )
-scale = Vector2( 0.0933343, 1 )
-shape = SubResource( 43 )
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
-position = Vector2( 17.7778, 1.75 )
-scale = Vector2( 0.0933343, 1 )
-shape = SubResource( 44 )
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
-position = Vector2( 1.05964e-07, 10.3889 )
-rotation = -1.57079
-scale = Vector2( 0.0933343, 1 )
-shape = SubResource( 45 )

@@ -14,7 +14,6 @@
 load_path = "res://.import/BasicSlime.png-7a2b1be9e19a526f078ba32320313053.stex"
 
 [sub_resource type="DynamicFont" id=15]
-size = 21
 font_data = ExtResource( 8 )
 
 [node name="UserInterface" type="Control"]
