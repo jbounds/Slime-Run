@@ -3,5 +3,4 @@
 [ext_resource path="res://Texture/Fonts/HUD Font 2.tres" type="DynamicFontData" id=1]
 
 [resource]
-size = 21
 font_data = ExtResource( 1 )
