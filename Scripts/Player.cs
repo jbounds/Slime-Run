@@ -12,6 +12,7 @@ namespace Scripts
         public TouchScreenButton ButtonLeft;
         public TouchScreenButton ButtonRight;
         public Goal CurrentGoalLabel;
+        public Area2D ScoreArea;
         public Node2D SlimeContainer;
         public List<SlimeData> SlimeList;
         public Level LevelLabel;
@@ -55,8 +56,8 @@ namespace Scripts
 
         private void GenerateSlimeLine()
         {
-            // 1 or less enemies + a max of 1 more per 5 seconds.
-            var slimeMax = 1 + (QuarterSecondsPassed / 20);
+            // 2 or less enemies + a max of 1 more per 10 seconds.
+            var slimeMax = 2 + (QuarterSecondsPassed / 40);
 
             var randomNumberOfEnemies = GD.Randi() % slimeMax;
             for (int i = 0; i < randomNumberOfEnemies; i++)
@@ -89,68 +90,20 @@ namespace Scripts
             Velocity *= Speed;
         }
 
-        public Vector2 GetSubTileWithPriority(TileMap tileMap, int id)
+        public virtual void HandleHit(Slime body)
         {
-            var tiles = tileMap.TileSet;
-            var rect = tileMap.TileSet.TileGetRegion(id);
-            var sizeX = rect.Size.x / tiles.AutotileGetSize(id).x;
-            var sizeY = rect.Size.y / tiles.AutotileGetSize(id).y;
-            var tileList = new List<Vector2>();
-
-            for (int x = 0; x < sizeX; x++)
+            if (body.SlimeData.Slime == CurrentGoalLabel.SlimeData.Slime)
             {
-                for (int y = 0; y < sizeY; y++)
-                {
-                    var priority = tiles.AutotileGetSubtilePriority(id, new Vector2(x, y));
-                    for (int p = 0; p < priority; p++)
-                    {
-                        tileList.Add(new Vector2(x, y));
-                    }
-                }
+                this.HandleHitScore();
             }
-
-            // Select a random tile from the list of all tiles.
-            return tileList[0];
-        }
-
-        public List<Vector2> GetTileBoundary(Vector2 playerPosition)
-        {
-            // X and Y are camera size dependent - //? can I pull current view size?
-            //? Card here: https://trello.com/c/TN08plk9
-            var xMaxValue = 36;
-            var yMaxValue = 36;
-            var index = 0;
-            var boundaries = new List<Vector2>();
-            boundaries.Add(playerPosition);
-
-            for (int x = 0; x <= xMaxValue; x++)
+            else
             {
-                for (int y = 0; y < yMaxValue; y++)
-                {
-                    index++;
-                    boundaries.Add(new Vector2(playerPosition.x + x, playerPosition.y));
-                    boundaries.Add(new Vector2(playerPosition.x - x, playerPosition.y - y));
-                    boundaries.Add(new Vector2(playerPosition.x + x, playerPosition.y - y));
-                    boundaries.Add(new Vector2(playerPosition.x - x, playerPosition.y));
-                }
+                this.HandleHitDamage();
             }
-
-            return boundaries;
+            body.GetParent().CallDeferred("remove_child", body);
         }
 
-        public virtual void handle_hit()
-        {
-            ScoreLabel.CurrentScore += 1;
-            ScoreLabel.UpdateScore();
-
-            CurrentGoalLabel.SlimeData = NextGoalLabel.SlimeData;
-            CurrentGoalLabel.UpdateGoal();
-
-            NextGoalLabel.SlimeData = ChooseSlimeData();
-            NextGoalLabel.UpdateGoal();
-        }
-
-        public virtual void handle_hit_death()
+        private void HandleHitDamage()
         {
             if (StrikesContainer.Strikes > 0)
             {
@@ -170,8 +123,22 @@ namespace Scripts
             }
         }
 
+        private void HandleHitScore()
+        {
+            ScoreLabel.CurrentScore += 1;
+            ScoreLabel.UpdateScore();
+
+            CurrentGoalLabel.SlimeData = NextGoalLabel.SlimeData;
+            CurrentGoalLabel.UpdateGoal();
+
+            NextGoalLabel.SlimeData = ChooseSlimeData();
+            NextGoalLabel.UpdateGoal();
+        }
+
         private void MovePlayer()
         {
+            // Don't allow any vertical movement.
+            Velocity.y = 0;
             MoveAndSlide(Velocity);
         }
 
@@ -230,6 +197,9 @@ namespace Scripts
             SlimeContainer = (Node2D)GetParent().GetNode("SlimeContainer");
 
             ScoreLabelPositionDifference = (int)(PlayerStartPosition.x - ScoreLabel.RectGlobalPosition.x);
+
+            ScoreArea = (Area2D)this.GetNode("ScoreArea");
+
             base._Ready();
         }
 
@@ -241,6 +211,10 @@ namespace Scripts
             if (slime.SlimeData.Slime == SlimeTypes.LavaSlime)
             {
                 slimeSprite.Hframes = 8;
+            }
+            else if (slime.SlimeData.Slime == SlimeTypes.PufferSlime)
+            {
+                slimeSprite.Hframes = 13;
             }
         }
 
