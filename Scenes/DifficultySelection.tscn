@@ -35,10 +35,10 @@ texture = ExtResource( 2 )
 expand = true
 
 [node name="Easy" type="Button" parent="."]
-margin_left = 204.0
-margin_top = 370.0
-margin_right = 216.0
-margin_bottom = 390.0
+margin_left = 211.0
+margin_top = 461.0
+margin_right = 223.0
+margin_bottom = 481.0
 rect_scale = Vector2( 12.6743, 3.84726 )
 custom_styles/normal = SubResource( 13 )
 __meta__ = {
@@ -46,10 +46,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Easy"]
-margin_left = -28.0
-margin_top = -12.0
-margin_right = 28.0
-margin_bottom = 9.0
+margin_left = 2.5248
+margin_top = 4.67866
+margin_right = 41.5248
+margin_bottom = 20.6787
+rect_scale = Vector2( 0.163297, 0.550594 )
 custom_colors/font_color = Color( 0.760784, 0.490196, 0.333333, 1 )
 custom_colors/font_color_shadow = Color( 0.639216, 0.368627, 0.25098, 1 )
 custom_constants/shadow_offset_x = 0
@@ -64,9 +65,9 @@ __meta__ = {
 
 [node name="Medium" type="Button" parent="."]
 margin_left = 211.0
-margin_top = 509.0
+margin_top = 569.0
 margin_right = 223.0
-margin_bottom = 529.0
+margin_bottom = 589.0
 rect_scale = Vector2( 12.6743, 3.84726 )
 custom_styles/normal = SubResource( 13 )
 __meta__ = {
@@ -74,11 +75,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Medium"]
-anchor_right = 0.76
-margin_left = -28.0
-margin_top = -12.0
-margin_right = 31.0
-margin_bottom = 9.0
+margin_left = 0.867889
+margin_top = 4.41872
+margin_right = 59.8679
+margin_bottom = 20.4187
+rect_scale = Vector2( 0.171564, 0.634813 )
 custom_colors/font_color = Color( 0.760784, 0.490196, 0.333333, 1 )
 custom_colors/font_color_shadow = Color( 0.639216, 0.368627, 0.25098, 1 )
 custom_constants/shadow_offset_x = 0
@@ -93,9 +94,9 @@ __meta__ = {
 
 [node name="Hard" type="Button" parent="."]
 margin_left = 211.0
-margin_top = 649.0
+margin_top = 677.0
 margin_right = 223.0
-margin_bottom = 669.0
+margin_bottom = 697.0
 rect_scale = Vector2( 12.6743, 3.84726 )
 custom_styles/normal = SubResource( 13 )
 __meta__ = {
@@ -103,10 +104,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Hard"]
-margin_left = -28.0
-margin_top = -12.0
-margin_right = 28.0
-margin_bottom = 9.0
+margin_left = 2.5248
+margin_top = 4.67866
+margin_right = 42.5248
+margin_bottom = 20.6787
+rect_scale = Vector2( 0.163297, 0.550594 )
 custom_colors/font_color = Color( 0.760784, 0.490196, 0.333333, 1 )
 custom_colors/font_color_shadow = Color( 0.639216, 0.368627, 0.25098, 1 )
 custom_constants/shadow_offset_x = 0
