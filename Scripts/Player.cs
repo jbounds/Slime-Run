@@ -135,18 +135,18 @@ namespace Scripts
             NextGoalLabel.UpdateGoal();
         }
 
-        private void MovePlayer()
+        private void MovePlayer(float delta)
         {
             // Don't allow any vertical movement.
             Velocity.y = 0;
-            MoveAndSlide(Velocity);
+            this.Position += Velocity * delta;
         }
 
         public override void _PhysicsProcess(float delta)
         {
             SecondsFraction += 1;
             GetInput();
-            MovePlayer();
+            MovePlayer(delta);
 
             if (SecondsFraction % 15 == 0)
             {
