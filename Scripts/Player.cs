@@ -12,8 +12,6 @@ namespace Scripts
         public TouchScreenButton ButtonLeft;
         public TouchScreenButton ButtonRight;
         public Goal CurrentGoalLabel;
-        // Will be updated on menu in future.
-        public DifficultyTypes Difficulty = DifficultyTypes.Easy;
         public Node2D SlimeContainer;
         public List<SlimeData> SlimeList;
         public Level LevelLabel;
@@ -29,7 +27,7 @@ namespace Scripts
 
         public SlimeData ChooseSlimeData()
         {
-            return SlimeList[(int)(GD.Randi() % (SlimeList.FindLastIndex(a => a.AssociatedDifficulty == Difficulty) + 1))];
+            return SlimeList[(int)(GD.Randi() % (SlimeList.FindLastIndex(a => a.AssociatedDifficulty == (GetTree().Root.GetNode("GlobalAttributes") as GlobalAttributes).Difficulty) + 1))];
         }
 
         public bool DenyOverlappingSpawn(uint xPosition, float yPosition)

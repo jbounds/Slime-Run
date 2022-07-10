@@ -19,10 +19,10 @@ namespace Scripts
 
         public override void _Ready()
         {
-            this.Connect("body_entered", this, "_on_Enemy_body_entered");
+            this.Connect("body_entered", this, nameof(BodyEntered));
         }
 
-        public void _on_Enemy_body_entered(Node body)
+        public void BodyEntered(Node body)
         {
             if (body is Player)
             {
