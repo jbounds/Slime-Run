@@ -4,13 +4,15 @@
 [ext_resource path="res://Texture/GUI/Waterfall/Waterfall.tres" type="Texture" id=2]
 [ext_resource path="res://Texture/GUI/SlimeFallsTitleBG.png" type="Texture" id=3]
 
-[sub_resource type="Theme" id=12]
+[sub_resource type="StyleBoxTexture" id=13]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 64, 32 )
 
 [sub_resource type="DynamicFontData" id=11]
 antialiased = false
 font_path = "res://Texture/Fonts/PeaberryBase.ttf"
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=14]
 outline_color = Color( 0.639216, 0.368627, 0.25098, 1 )
 font_data = SubResource( 11 )
 
@@ -32,20 +34,16 @@ rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 expand = true
 
-[node name="Easy" type="TextureButton" parent="."]
-margin_left = 288.0
-margin_top = 384.0
-margin_right = 288.0
-margin_bottom = 384.0
-rect_scale = Vector2( 3, 3 )
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme = SubResource( 12 )
-toggle_mode = true
-shortcut_in_tooltip = false
-texture_normal = ExtResource( 1 )
-expand = true
-stretch_mode = 3
+[node name="Easy" type="Button" parent="."]
+margin_left = 204.0
+margin_top = 370.0
+margin_right = 216.0
+margin_bottom = 390.0
+rect_scale = Vector2( 12.6743, 3.84726 )
+custom_styles/normal = SubResource( 13 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="Label" type="Label" parent="Easy"]
 margin_left = -28.0
@@ -56,7 +54,7 @@ custom_colors/font_color = Color( 0.760784, 0.490196, 0.333333, 1 )
 custom_colors/font_color_shadow = Color( 0.639216, 0.368627, 0.25098, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 text = "Easy"
 align = 1
 valign = 1
@@ -64,20 +62,16 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Medium" type="TextureButton" parent="."]
-margin_left = 288.0
-margin_top = 533.0
-margin_right = 288.0
-margin_bottom = 533.0
-rect_scale = Vector2( 3, 3 )
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme = SubResource( 12 )
-toggle_mode = true
-shortcut_in_tooltip = false
-texture_normal = ExtResource( 1 )
-expand = true
-stretch_mode = 3
+[node name="Medium" type="Button" parent="."]
+margin_left = 211.0
+margin_top = 509.0
+margin_right = 223.0
+margin_bottom = 529.0
+rect_scale = Vector2( 12.6743, 3.84726 )
+custom_styles/normal = SubResource( 13 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="Label" type="Label" parent="Medium"]
 anchor_right = 0.76
@@ -89,7 +83,7 @@ custom_colors/font_color = Color( 0.760784, 0.490196, 0.333333, 1 )
 custom_colors/font_color_shadow = Color( 0.639216, 0.368627, 0.25098, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 text = "Medium"
 align = 1
 valign = 1
@@ -97,20 +91,16 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Hard" type="TextureButton" parent="."]
-margin_left = 288.0
-margin_top = 705.0
-margin_right = 288.0
-margin_bottom = 705.0
-rect_scale = Vector2( 3, 3 )
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme = SubResource( 12 )
-toggle_mode = true
-shortcut_in_tooltip = false
-texture_normal = ExtResource( 1 )
-expand = true
-stretch_mode = 3
+[node name="Hard" type="Button" parent="."]
+margin_left = 211.0
+margin_top = 649.0
+margin_right = 223.0
+margin_bottom = 669.0
+rect_scale = Vector2( 12.6743, 3.84726 )
+custom_styles/normal = SubResource( 13 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="Label" type="Label" parent="Hard"]
 margin_left = -28.0
@@ -121,7 +111,7 @@ custom_colors/font_color = Color( 0.760784, 0.490196, 0.333333, 1 )
 custom_colors/font_color_shadow = Color( 0.639216, 0.368627, 0.25098, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 text = "Hard"
 align = 1
 valign = 1
