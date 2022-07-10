@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/btnRectOverlay.png-b4ff475cdc1ca6074647fcac0d7a8088.stex"
+path="res://.import/btnBackArrow.png-232f62cdced197c7d9eba4c73db0f3df.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Texture/GUI/Buttons/btnRectOverlay.png"
-dest_files=[ "res://.import/btnRectOverlay.png-b4ff475cdc1ca6074647fcac0d7a8088.stex" ]
+source_file="res://Texture/GUI/Buttons/btnBackArrow.png"
+dest_files=[ "res://.import/btnBackArrow.png-232f62cdced197c7d9eba4c73db0f3df.stex" ]
 
 [params]
 

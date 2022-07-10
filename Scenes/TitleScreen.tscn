@@ -231,11 +231,11 @@ __meta__ = {
 }
 
 [node name="Settings" type="TextureButton" parent="."]
-margin_left = 468.0
-margin_top = 913.0
-margin_right = 500.0
-margin_bottom = 945.0
-rect_scale = Vector2( 2, 2 )
+margin_left = 458.0
+margin_top = 906.0
+margin_right = 490.0
+margin_bottom = 938.0
+rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Settings"]
