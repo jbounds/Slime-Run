@@ -239,6 +239,6 @@ rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Settings"]
-position = Vector2( 15.5, 14.5 )
+position = Vector2( 15.9, 14.5 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 7 )

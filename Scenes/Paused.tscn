@@ -1,0 +1,121 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Texture/Fonts/SelecteDifficultyFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Texture/GUI/Buttons/btnRectBase.png" type="Texture" id=2]
+[ext_resource path="res://Texture/GUI/Buttons/SettingsGear.png" type="Texture" id=3]
+[ext_resource path="res://Texture/GUI/Buttons/btnSquareBase.png" type="Texture" id=4]
+[ext_resource path="res://Texture/GUI/Buttons/Home.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFontData" id=7]
+antialiased = false
+font_path = "res://Texture/Fonts/PeaberryBase.ttf"
+
+[sub_resource type="DynamicFont" id=8]
+outline_color = Color( 0.639216, 0.368627, 0.25098, 1 )
+font_data = SubResource( 7 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -1550, -322 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 576.0
+margin_bottom = 1024.0
+color = Color( 0, 0, 0, 0.278431 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 141.0
+margin_right = 576.0
+margin_bottom = 252.0
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
+custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 5
+custom_fonts/font = ExtResource( 1 )
+text = "Paused"
+align = 1
+valign = 1
+
+[node name="Resume" type="TextureButton" parent="."]
+margin_top = 383.0
+margin_right = 192.0
+margin_bottom = 415.0
+rect_scale = Vector2( 3, 3 )
+texture_normal = ExtResource( 2 )
+expand = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Resume"]
+margin_left = 68.0
+margin_top = 4.0
+margin_right = 138.0
+margin_bottom = 30.0
+rect_scale = Vector2( 0.8, 0.8 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0.760784, 0.490196, 0.333333, 1 )
+custom_colors/font_color_shadow = Color( 0.639216, 0.368627, 0.25098, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 8 )
+text = "Resume"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Restart" type="TextureButton" parent="."]
+margin_top = 509.0
+margin_right = 192.0
+margin_bottom = 541.0
+rect_scale = Vector2( 3, 3 )
+texture_normal = ExtResource( 2 )
+expand = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Restart"]
+margin_left = 68.0
+margin_top = 4.0
+margin_right = 138.0
+margin_bottom = 30.0
+rect_scale = Vector2( 0.8, 0.8 )
+custom_colors/font_color = Color( 0.760784, 0.490196, 0.333333, 1 )
+custom_colors/font_color_shadow = Color( 0.639216, 0.368627, 0.25098, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 8 )
+text = "Restart"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Settings" type="TextureButton" parent="."]
+margin_left = 304.0
+margin_top = 635.0
+margin_right = 336.0
+margin_bottom = 667.0
+rect_scale = Vector2( 2.5, 2.5 )
+texture_normal = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Settings"]
+position = Vector2( 15.9001, 14.5 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 3 )
+
+[node name="Home" type="TextureButton" parent="."]
+margin_left = 192.0
+margin_top = 635.0
+margin_right = 224.0
+margin_bottom = 667.0
+rect_scale = Vector2( 2.5, 2.5 )
+texture_normal = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Home"]
+position = Vector2( 15.9001, 14.5 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 5 )
