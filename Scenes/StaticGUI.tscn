@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/StrikesContainer.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Goal.cs" type="Script" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://Texture/Slimes/BasicSlime.png" type="Texture" id=6]
 [ext_resource path="res://Texture/Fonts/NewHUDFont.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Texture/Fonts/HUD Font 2.tres" type="DynamicFontData" id=8]
-[ext_resource path="res://Scenes/ScoreFont.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Texture/Fonts/ScoreFont.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Texture/GUI/Buttons/Pause.png" type="Texture" id=10]
 
 [sub_resource type="StreamTexture" id=9]
 load_path = "res://.import/BasicSlime.png-7a2b1be9e19a526f078ba32320313053.stex"
@@ -140,3 +141,7 @@ margin_top = 10.0
 margin_right = 278.0
 margin_bottom = 42.0
 texture_normal = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Pause"]
+position = Vector2( 16, 14.5 )
+texture = ExtResource( 10 )
