@@ -213,15 +213,6 @@ namespace Scripts
         {
             var slimeSprite = (slime.GetNode("Sprite") as Sprite);
             slimeSprite.Texture = (Texture)GD.Load("res://Texture/Slimes/" + slime.SlimeData.Slime + ".png");
-
-            if (slime.SlimeData.Slime == SlimeTypes.LavaSlime)
-            {
-                slimeSprite.Hframes = 8;
-            }
-            else if (slime.SlimeData.Slime == SlimeTypes.PufferSlime)
-            {
-                slimeSprite.Hframes = 13;
-            }
         }
 
         public void SpawnSlime()
