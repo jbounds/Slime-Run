@@ -22,7 +22,7 @@ color = Color( 0, 0, 0, 0.278431 )
 [node name="OptionsTitle" type="Label" parent="."]
 margin_top = 141.0
 margin_right = 576.0
-margin_bottom = 252.0
+margin_bottom = 221.0
 size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
 custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
@@ -34,10 +34,10 @@ align = 1
 valign = 1
 
 [node name="Music" type="Label" parent="."]
-margin_left = 1.0
-margin_top = 391.0
-margin_right = 88.0
-margin_bottom = 407.0
+margin_left = 97.0
+margin_top = 359.0
+margin_right = 144.0
+margin_bottom = 375.0
 rect_scale = Vector2( 3.5, 3.5 )
 size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
@@ -49,11 +49,21 @@ text = "Music"
 align = 2
 valign = 1
 
-[node name="Music2" type="Label" parent="."]
-margin_left = 1.0
-margin_top = 561.0
-margin_right = 88.0
-margin_bottom = 577.0
+[node name="MusicToggle" type="CheckButton" parent="."]
+margin_left = 79.0
+margin_top = 405.0
+margin_right = 129.0
+margin_bottom = 433.0
+rect_scale = Vector2( 4, 4 )
+custom_icons/off = ExtResource( 3 )
+custom_icons/on = ExtResource( 2 )
+pressed = true
+
+[node name="Sound" type="Label" parent="."]
+margin_left = 312.0
+margin_top = 356.0
+margin_right = 362.0
+margin_bottom = 372.0
 rect_scale = Vector2( 3.5, 3.5 )
 size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
@@ -65,21 +75,51 @@ text = "Sound"
 align = 2
 valign = 1
 
-[node name="MusicToggle" type="CheckButton" parent="."]
-margin_left = 302.0
-margin_top = 359.0
-margin_right = 352.0
-margin_bottom = 387.0
+[node name="SoundToggle" type="CheckButton" parent="."]
+margin_left = 299.0
+margin_top = 405.0
+margin_right = 349.0
+margin_bottom = 433.0
 rect_scale = Vector2( 4, 4 )
 custom_icons/off = ExtResource( 3 )
 custom_icons/on = ExtResource( 2 )
-pressed = true
 
-[node name="Sound Toggle" type="CheckButton" parent="."]
-margin_left = 302.0
-margin_top = 534.0
-margin_right = 352.0
-margin_bottom = 562.0
+[node name="Controls" type="Label" parent="."]
+margin_top = 540.0
+margin_right = 164.0
+margin_bottom = 556.0
+rect_scale = Vector2( 3.5, 3.5 )
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
+custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 1 )
+text = "Tap Controls"
+align = 1
+valign = 1
+
+[node name="ControlsDescription" type="Label" parent="."]
+margin_left = 104.0
+margin_top = 596.0
+margin_right = 475.0
+margin_bottom = 631.0
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
+custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 1 )
+text = "*Tap the left and right sides of the screen
+instead of tilt controls"
+align = 1
+valign = 1
+
+[node name="ControlsToggle" type="CheckButton" parent="."]
+margin_left = 186.0
+margin_top = 632.0
+margin_right = 236.0
+margin_bottom = 660.0
 rect_scale = Vector2( 4, 4 )
 custom_icons/off = ExtResource( 3 )
 custom_icons/on = ExtResource( 2 )

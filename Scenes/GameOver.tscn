@@ -7,15 +7,14 @@
 [ext_resource path="res://Texture/GUI/Buttons/btnSquareBase.png" type="Texture" id=5]
 [ext_resource path="res://Texture/GUI/Buttons/RestartIcon.png" type="Texture" id=6]
 
-[sub_resource type="DynamicFont" id=1]
-size = 48
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 48
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
 
 [node name="Control" type="Control"]
@@ -31,7 +30,7 @@ color = Color( 0, 0, 0, 0.278431 )
 [node name="GameOverTitle" type="Label" parent="."]
 margin_top = 141.0
 margin_right = 576.0
-margin_bottom = 252.0
+margin_bottom = 221.0
 size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
 custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
@@ -42,62 +41,43 @@ text = "Game Over"
 align = 1
 valign = 1
 
-[node name="DifficultyLabel" type="Label" parent="."]
-anchor_left = 0.159722
-anchor_right = 0.159722
-margin_left = -92.0
-margin_top = 326.0
-margin_right = 484.0
-margin_bottom = 374.0
+[node name="GameDifficultyLabel" type="Label" parent="."]
+margin_left = 119.0
+margin_top = 228.0
+margin_right = 217.0
+margin_bottom = 244.0
+rect_scale = Vector2( 2, 2 )
 size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
 custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
 custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 3
-custom_fonts/font = SubResource( 1 )
+custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 4 )
 text = "Difficulty:"
-align = 1
 valign = 1
 
-[node name="DifficultyTextBG" type="NinePatchRect" parent="."]
-margin_left = 153.0
-margin_top = 379.0
-margin_right = 244.0
-margin_bottom = 397.0
-rect_scale = Vector2( 3, 3 )
-texture = ExtResource( 3 )
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
-[node name="DifficultyText" type="Label" parent="DifficultyTextBG"]
-anchor_left = 0.182292
-anchor_right = 0.182292
-margin_left = -16.5885
-margin_top = 1.0
-margin_right = 74.4115
-margin_bottom = 19.0
+[node name="GameDifficultyLabel2" type="Label" parent="."]
+margin_left = 339.0
+margin_top = 228.0
+margin_right = 398.0
+margin_bottom = 244.0
+rect_scale = Vector2( 2, 2 )
 size_flags_horizontal = 4
-custom_colors/font_color = Color( 0.760784, 0.490196, 0.333333, 1 )
-custom_colors/font_color_shadow = Color( 0.639216, 0.368627, 0.25098, 1 )
+custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
+custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "Medium"
-align = 1
 valign = 1
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchor_left = 0.196181
 anchor_right = 0.196181
 margin_left = -113.0
-margin_top = 463.0
+margin_top = 347.0
 margin_right = 463.0
-margin_bottom = 511.0
+margin_bottom = 395.0
 size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
 custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
@@ -110,9 +90,9 @@ valign = 1
 
 [node name="ScoreTextBG" type="NinePatchRect" parent="."]
 margin_left = 153.0
-margin_top = 510.0
+margin_top = 394.0
 margin_right = 244.0
-margin_bottom = 528.0
+margin_bottom = 412.0
 rect_scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
 patch_margin_left = 8
@@ -144,9 +124,9 @@ __meta__ = {
 anchor_left = 0.196181
 anchor_right = 0.196181
 margin_left = -113.0
-margin_top = 594.0
+margin_top = 502.0
 margin_right = 463.0
-margin_bottom = 642.0
+margin_bottom = 550.0
 size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
 custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
@@ -159,9 +139,9 @@ valign = 1
 
 [node name="HighScoreTextBG" type="NinePatchRect" parent="."]
 margin_left = 161.0
-margin_top = 647.0
+margin_top = 555.0
 margin_right = 250.0
-margin_bottom = 665.0
+margin_bottom = 573.0
 rect_scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
 patch_margin_left = 8
@@ -188,9 +168,9 @@ valign = 1
 
 [node name="Home" type="TextureButton" parent="."]
 margin_left = 186.0
-margin_top = 744.0
+margin_top = 667.0
 margin_right = 218.0
-margin_bottom = 776.0
+margin_bottom = 699.0
 rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 5 )
 
@@ -201,9 +181,9 @@ texture = ExtResource( 4 )
 
 [node name="Restart" type="TextureButton" parent="."]
 margin_left = 324.0
-margin_top = 744.0
+margin_top = 667.0
 margin_right = 356.0
-margin_bottom = 776.0
+margin_bottom = 699.0
 rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 5 )
 
