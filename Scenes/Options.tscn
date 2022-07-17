@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Texture/Fonts/SelecteDifficultyFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Texture/GUI/Buttons/toggleON.png" type="Texture" id=2]
+[ext_resource path="res://Texture/GUI/Buttons/toggleOFF.png" type="Texture" id=3]
+[ext_resource path="res://Texture/GUI/Buttons/btnSquareBase.png" type="Texture" id=4]
+[ext_resource path="res://Texture/GUI/Buttons/btnBackArrow.png" type="Texture" id=5]
+[ext_resource path="res://Texture/Fonts/SelectDifficultyFontData.tres" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 6 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 576.0
+margin_bottom = 1024.0
+color = Color( 0, 0, 0, 0.278431 )
+
+[node name="OptionsTitle" type="Label" parent="."]
+margin_top = 141.0
+margin_right = 576.0
+margin_bottom = 252.0
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
+custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 5
+custom_fonts/font = ExtResource( 1 )
+text = "Options"
+align = 1
+valign = 1
+
+[node name="Music" type="Label" parent="."]
+margin_left = 1.0
+margin_top = 391.0
+margin_right = 88.0
+margin_bottom = 407.0
+rect_scale = Vector2( 3.5, 3.5 )
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
+custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 1 )
+text = "Music"
+align = 2
+valign = 1
+
+[node name="Music2" type="Label" parent="."]
+margin_left = 1.0
+margin_top = 561.0
+margin_right = 88.0
+margin_bottom = 577.0
+rect_scale = Vector2( 3.5, 3.5 )
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
+custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 1 )
+text = "Sound"
+align = 2
+valign = 1
+
+[node name="MusicToggle" type="CheckButton" parent="."]
+margin_left = 302.0
+margin_top = 359.0
+margin_right = 352.0
+margin_bottom = 387.0
+rect_scale = Vector2( 4, 4 )
+custom_icons/off = ExtResource( 3 )
+custom_icons/on = ExtResource( 2 )
+pressed = true
+
+[node name="Sound Toggle" type="CheckButton" parent="."]
+margin_left = 302.0
+margin_top = 534.0
+margin_right = 352.0
+margin_bottom = 562.0
+rect_scale = Vector2( 4, 4 )
+custom_icons/off = ExtResource( 3 )
+custom_icons/on = ExtResource( 2 )
+
+[node name="Back" type="TextureButton" parent="."]
+margin_left = 38.0
+margin_top = 906.0
+margin_right = 70.0
+margin_bottom = 938.0
+rect_scale = Vector2( 2.5, 2.5 )
+texture_normal = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Back"]
+position = Vector2( 15.6, 14.4 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 5 )

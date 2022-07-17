@@ -8,13 +8,13 @@
 [ext_resource path="res://Texture/GUI/Buttons/btnBackArrow.png" type="Texture" id=6]
 [ext_resource path="res://Texture/Fonts/SelecteDifficultyFont.tres" type="DynamicFont" id=7]
 
-[sub_resource type="DynamicFontData" id=7]
+[sub_resource type="DynamicFontData" id=16]
 antialiased = false
 font_path = "res://Texture/Fonts/PeaberryBase.ttf"
 
 [sub_resource type="DynamicFont" id=15]
 outline_color = Color( 0.639216, 0.368627, 0.25098, 1 )
-font_data = SubResource( 7 )
+font_data = SubResource( 16 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -35,7 +35,7 @@ rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 expand = true
 
-[node name="Label" type="Label" parent="."]
+[node name="SelectDifficultyTitle" type="Label" parent="."]
 margin_top = 141.0
 margin_right = 576.0
 margin_bottom = 252.0

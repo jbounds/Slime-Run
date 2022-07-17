@@ -6,8 +6,15 @@ public class DifficultyScreen : Control
     public override void _Ready()
     {
         GetNode("Easy").Connect("pressed", this, nameof(EasyPressed));
+        GetNode("Easy").Connect("button_down", this, nameof(ButtonDown));
         GetNode("Medium").Connect("pressed", this, nameof(MediumPressed));
         GetNode("Hard").Connect("pressed", this, nameof(HardPressed));
+    }
+
+    public void ButtonDown()
+    {
+        var button = (TextureButton)GetNode("Easy");
+        button.Modulate = new Color(0.6f, 0.6f, 0.6f);
     }
 
     public void EasyPressed()
