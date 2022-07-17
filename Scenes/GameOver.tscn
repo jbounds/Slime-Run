@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Texture/Fonts/SelecteDifficultyFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Texture/Fonts/SelectDifficultyFontData.tres" type="DynamicFontData" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Texture/GUI/Buttons/Home.png" type="Texture" id=4]
 [ext_resource path="res://Texture/GUI/Buttons/btnSquareBase.png" type="Texture" id=5]
 [ext_resource path="res://Texture/GUI/Buttons/RestartIcon.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/ButtonBehaviours.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/GameOverScreen.cs" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 2 )
@@ -18,9 +20,11 @@ font_data = ExtResource( 2 )
 font_data = ExtResource( 2 )
 
 [node name="Control" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -1022, 38 )
+script = ExtResource( 8 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 576.0
@@ -72,12 +76,9 @@ text = "Medium"
 valign = 1
 
 [node name="ScoreLabel" type="Label" parent="."]
-anchor_left = 0.196181
-anchor_right = 0.196181
-margin_left = -113.0
 margin_top = 347.0
-margin_right = 463.0
-margin_bottom = 395.0
+margin_right = 576.0
+margin_bottom = 48.0
 size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
 custom_colors/font_color_shadow = Color( 0.760784, 0.639216, 0.909804, 1 )
@@ -121,11 +122,9 @@ __meta__ = {
 }
 
 [node name="HighScoreLabel" type="Label" parent="."]
-anchor_left = 0.196181
-anchor_right = 0.196181
-margin_left = -113.0
+margin_left = 0.000259399
 margin_top = 502.0
-margin_right = 463.0
+margin_right = 576.0
 margin_bottom = 550.0
 size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.756863, 0.960784, 0.945098, 1 )
@@ -173,6 +172,7 @@ margin_right = 218.0
 margin_bottom = 699.0
 rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 5 )
+script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Home"]
 position = Vector2( 15.9001, 14.5 )
@@ -186,6 +186,7 @@ margin_right = 356.0
 margin_bottom = 699.0
 rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 5 )
+script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Restart"]
 position = Vector2( 15.9001, 14.5 )

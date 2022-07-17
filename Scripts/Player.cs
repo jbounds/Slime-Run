@@ -12,6 +12,7 @@ namespace Scripts
         public TouchScreenButton ButtonLeft;
         public TouchScreenButton ButtonRight;
         public Goal CurrentGoalLabel;
+        Control GameOverMenu;
         public Area2D ScoreArea;
         public Node2D SlimeContainer;
         public List<SlimeData> SlimeList;
@@ -111,16 +112,17 @@ namespace Scripts
             }
             else
             {
-                (GetTree().Root.GetNode("GlobalAttributes") as GlobalAttributes).HighScore = ScoreLabel.CurrentScore;
-                ScoreLabel.ResetScore();
-                QuarterSecondsPassed = 0;
-                this.Position = PlayerStartPosition;
+                var highScoreForDifficulty = (GetTree().Root.GetNode("GlobalAttributes") as GlobalAttributes).HighScoreList.
+                    First(a => a.Difficulty == (GetTree().Root.GetNode("GlobalAttributes") as GlobalAttributes).Difficulty).Score;
 
-                RemoveAllEnemies();
+                if (ScoreLabel.CurrentScore > highScoreForDifficulty)
+                {
+                    (GetTree().Root.GetNode("GlobalAttributes") as GlobalAttributes).HighScoreList.
+                    First(a => a.Difficulty == (GetTree().Root.GetNode("GlobalAttributes") as GlobalAttributes).Difficulty).Score = ScoreLabel.CurrentScore;
+                }
 
-                // Reset the seconds tracker to refresh the map.
-                SecondsFraction = -1;
-                StrikesContainer.ResetStrikes();
+                GetParent().AddChild(GameOverMenu);
+                GetTree().Paused = true;
             }
         }
 
@@ -200,6 +202,9 @@ namespace Scripts
             ScoreLabelPositionDifference = (int)(PlayerStartPosition.x - ScoreLabel.RectGlobalPosition.x);
 
             ScoreArea = (Area2D)this.GetNode("ScoreArea");
+
+            var gameOverScene = GD.Load("res://Scenes/GameOver.tscn") as PackedScene;
+            GameOverMenu = gameOverScene.Instance() as Control;
 
             base._Ready();
         }

@@ -11,7 +11,15 @@ namespace Scripts
 
         }
 
+        public override void _Ready()
+        {
+            HighScoreList = new System.Collections.Generic.List<ScoreItem>();
+            HighScoreList.Add(new ScoreItem() { Difficulty = DifficultyTypes.Easy, });
+            HighScoreList.Add(new ScoreItem() { Difficulty = DifficultyTypes.Normal, });
+            HighScoreList.Add(new ScoreItem() { Difficulty = DifficultyTypes.Hard, });
+        }
+
         public DifficultyTypes Difficulty;
-        public int HighScore;
+        public System.Collections.Generic.List<ScoreItem> HighScoreList;
     }
 }
