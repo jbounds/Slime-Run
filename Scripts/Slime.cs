@@ -11,7 +11,8 @@ namespace Scripts
 
         public override void _PhysicsProcess(float delta)
         {
-            Velocity.y += delta * Gravity;
+            // Use this if we need to check collsion on these bodies.
+            var collidingBodies = GetCollidingBodies();
         }
 
         public override void _Ready()

@@ -12,5 +12,6 @@ namespace Scripts
         }
 
         public DifficultyTypes Difficulty;
+        public int HighScore;
     }
 }

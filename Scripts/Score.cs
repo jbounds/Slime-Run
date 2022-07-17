@@ -6,7 +6,7 @@ namespace Scripts
 
     public class Score : Label
     {
-        public float CurrentScore = 0;
+        public int CurrentScore = 0;
 
         public void UpdateScore()
         {

@@ -35,7 +35,7 @@ namespace Scripts
         {
             var allSlimes = SlimeContainer.GetChildren();
             var slimeList = new List<Slime>();
-            var slimeWidth = 64;
+            var slimeWidth = 70;
 
             for (int i = 0; i < allSlimes.Count; i++)
             {
@@ -111,6 +111,7 @@ namespace Scripts
             }
             else
             {
+                (GetTree().Root.GetNode("GlobalAttributes") as GlobalAttributes).HighScore = ScoreLabel.CurrentScore;
                 ScoreLabel.ResetScore();
                 QuarterSecondsPassed = 0;
                 this.Position = PlayerStartPosition;
