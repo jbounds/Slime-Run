@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Texture/Fonts/SelecteDifficultyFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Texture/GUI/Buttons/btnRectBase.png" type="Texture" id=2]
 [ext_resource path="res://Texture/GUI/Buttons/SettingsGear.png" type="Texture" id=3]
 [ext_resource path="res://Texture/GUI/Buttons/btnSquareBase.png" type="Texture" id=4]
 [ext_resource path="res://Texture/GUI/Buttons/Home.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/PauseScreen.cs" type="Script" id=6]
+[ext_resource path="res://Scripts/ButtonBehaviours.cs" type="Script" id=7]
 
 [sub_resource type="DynamicFontData" id=7]
 antialiased = false
@@ -15,13 +17,17 @@ outline_color = Color( 0.639216, 0.368627, 0.25098, 1 )
 font_data = SubResource( 7 )
 
 [node name="Control" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -1550, -322 )
+mouse_filter = 2
+script = ExtResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 576.0
 margin_bottom = 1024.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 0.278431 )
 
 [node name="Label" type="Label" parent="."]
@@ -46,6 +52,7 @@ rect_scale = Vector2( 3, 3 )
 texture_normal = ExtResource( 2 )
 expand = true
 stretch_mode = 3
+script = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="Resume"]
 margin_left = 68.0
@@ -75,6 +82,7 @@ rect_scale = Vector2( 3, 3 )
 texture_normal = ExtResource( 2 )
 expand = true
 stretch_mode = 3
+script = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="Restart"]
 margin_left = 68.0
@@ -101,6 +109,7 @@ margin_right = 336.0
 margin_bottom = 667.0
 rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 4 )
+script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Settings"]
 position = Vector2( 15.9001, 14.5 )
@@ -114,6 +123,7 @@ margin_right = 224.0
 margin_bottom = 667.0
 rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 4 )
+script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Home"]
 position = Vector2( 15.9001, 14.5 )
