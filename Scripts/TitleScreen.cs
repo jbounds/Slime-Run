@@ -22,6 +22,6 @@ public class TitleScreen : Control
 
     public void SettingsPressed()
     {
-        // Add settings screen.
+        GetTree().ChangeScene("res://Scenes/Options.tscn");
     }
 }

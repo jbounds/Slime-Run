@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Texture/GUI/SlimeFallsTitle.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/TitleScreen.cs" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Texture/GUI/Slimes/FoxSlimeIdle.png" type="Texture" id=9]
 [ext_resource path="res://Texture/Slimes/SlimeShadow.png" type="Texture" id=10]
 [ext_resource path="res://Texture/GUI/Slimes/PufferInWater/PufferInWater.tres" type="Texture" id=11]
+[ext_resource path="res://Scripts/ButtonBehaviours.cs" type="Script" id=12]
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -185,6 +186,7 @@ margin_right = 256.0
 margin_bottom = 519.0
 rect_scale = Vector2( 3, 3 )
 texture_normal = ExtResource( 5 )
+script = ExtResource( 12 )
 
 [node name="Label" type="Label" parent="Start"]
 margin_left = 8.0
@@ -211,6 +213,7 @@ margin_right = 288.0
 margin_bottom = 651.0
 rect_scale = Vector2( 2, 2 )
 texture_normal = ExtResource( 5 )
+script = ExtResource( 12 )
 
 [node name="Label" type="Label" parent="Exit"]
 margin_left = 12.5
@@ -237,6 +240,7 @@ margin_right = 490.0
 margin_bottom = 938.0
 rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 6 )
+script = ExtResource( 12 )
 
 [node name="Sprite" type="Sprite" parent="Settings"]
 position = Vector2( 15.9, 14.5 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Texture/Fonts/SelecteDifficultyFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Texture/GUI/Buttons/toggleON.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Texture/GUI/Buttons/btnSquareBase.png" type="Texture" id=4]
 [ext_resource path="res://Texture/GUI/Buttons/btnBackArrow.png" type="Texture" id=5]
 [ext_resource path="res://Texture/Fonts/SelectDifficultyFontData.tres" type="DynamicFontData" id=6]
+[ext_resource path="res://Scripts/OptionsScreen.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/ButtonBehaviours.cs" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 6 )
@@ -13,6 +15,7 @@ font_data = ExtResource( 6 )
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 7 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 576.0
@@ -131,6 +134,7 @@ margin_right = 70.0
 margin_bottom = 938.0
 rect_scale = Vector2( 2.5, 2.5 )
 texture_normal = ExtResource( 4 )
+script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Back"]
 position = Vector2( 15.6, 14.4 )
