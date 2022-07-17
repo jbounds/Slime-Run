@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fsm-team-escp-early-bird.wav-fab441e7633b34e299de9c7ac8c9976c.sample"
+
+[deps]
+
+source_file="res://Music and SFX/fsm-team-escp-early-bird.wav"
+dest_files=[ "res://.import/fsm-team-escp-early-bird.wav-fab441e7633b34e299de9c7ac8c9976c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
