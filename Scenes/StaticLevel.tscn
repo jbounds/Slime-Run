@@ -17,14 +17,14 @@ texture = ExtResource( 4 )
 
 [node name="SlimeContainer" type="Node2D" parent="."]
 
+[node name="StaticGUI" parent="." instance=ExtResource( 2 )]
+mouse_filter = 2
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 288, 888 )
 z_index = 1
 
 [node name="CanvasLayer" parent="Player" instance=ExtResource( 3 )]
-
-[node name="StaticGUI" parent="." instance=ExtResource( 2 )]
-mouse_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, 512 )

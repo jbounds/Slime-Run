@@ -147,6 +147,11 @@ namespace Scripts
             ScoreLabel.CurrentScore += 1;
             ScoreLabel.UpdateScore();
 
+            UpdateSlimeGoals();
+        }
+
+        private void UpdateSlimeGoals()
+        {
             CurrentGoalLabel.SlimeData = NextGoalLabel.SlimeData;
             CurrentGoalLabel.UpdateGoal();
 
@@ -211,6 +216,10 @@ namespace Scripts
 
             CurrentGoalLabel = (Goal)GetParent().GetNode("StaticGUI/CurrentGoalLabel");
             NextGoalLabel = (Goal)GetParent().GetNode("StaticGUI/NextGoalLabel");
+            // Refresh both slime labels from default values.
+            UpdateSlimeGoals();
+            UpdateSlimeGoals();
+
             StrikesContainer = (StrikesContainer)GetParent().GetNode("StaticGUI/StrikesContainer");
 
             SlimeContainer = (Node2D)GetParent().GetNode("SlimeContainer");

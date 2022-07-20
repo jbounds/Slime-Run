@@ -23,14 +23,6 @@ namespace Scripts
         public void UpdateGoal()
         {
             Slime.Texture = (Texture)GD.Load("res://Texture/Slimes/" + SlimeData.Slime + ".png");
-            if (SlimeData.Slime == SlimeTypes.LavaSlime)
-            {
-                Slime.Hframes = 8;
-            }
-            else
-            {
-                Slime.Hframes = 12;
-            }
         }
     }
 }

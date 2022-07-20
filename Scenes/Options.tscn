@@ -58,7 +58,6 @@ margin_top = 405.0
 margin_right = 129.0
 margin_bottom = 433.0
 rect_scale = Vector2( 4, 4 )
-focus_mode = 0
 custom_icons/off = ExtResource( 3 )
 custom_icons/on = ExtResource( 2 )
 pressed = true
@@ -85,7 +84,6 @@ margin_top = 405.0
 margin_right = 349.0
 margin_bottom = 433.0
 rect_scale = Vector2( 4, 4 )
-focus_mode = 0
 custom_icons/off = ExtResource( 3 )
 custom_icons/on = ExtResource( 2 )
 
@@ -126,7 +124,6 @@ margin_top = 632.0
 margin_right = 236.0
 margin_bottom = 660.0
 rect_scale = Vector2( 4, 4 )
-focus_mode = 0
 custom_icons/off = ExtResource( 3 )
 custom_icons/on = ExtResource( 2 )
 
