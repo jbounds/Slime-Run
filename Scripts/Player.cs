@@ -79,13 +79,21 @@ namespace Scripts
             var edgeOfScreenBuffer = 20;
 
             // Add in user movement
-            if ((Input.IsActionPressed("ui_right") || ButtonRight.IsPressed()) && playerPosition.x <= GetViewport().Size.x - edgeOfScreenBuffer)
+            if ((GetTree().Root.GetNode("GlobalAttributes") as GlobalAttributes).IsMobile &&
+                (GetTree().Root.GetNode("GlobalAttributes") as GlobalAttributes).UseTiltControls)
             {
-                Velocity.x += 1;
+                Velocity.x = Input.GetAccelerometer().x * 0.4f;
             }
-            if ((Input.IsActionPressed("ui_left") || ButtonLeft.IsPressed()) && playerPosition.x > 0 + edgeOfScreenBuffer)
+            else
             {
-                Velocity.x -= 1;
+                if ((Input.IsActionPressed("ui_right") || ButtonRight.IsPressed()) && playerPosition.x <= GetViewport().Size.x - edgeOfScreenBuffer)
+                {
+                    Velocity.x += 1;
+                }
+                if ((Input.IsActionPressed("ui_left") || ButtonLeft.IsPressed()) && playerPosition.x > 0 + edgeOfScreenBuffer)
+                {
+                    Velocity.x -= 1;
+                }
             }
 
             Velocity *= Speed;

@@ -21,5 +21,8 @@ namespace Scripts
 
         public DifficultyTypes Difficulty;
         public System.Collections.Generic.List<ScoreItem> HighScoreList;
+        public bool IsMobile = OS.GetName() == "Android" || OS.GetName() == "iOS";
+        // Set in the setting in the future.
+        public bool UseTiltControls = true;
     }
 }
