@@ -82,7 +82,15 @@ namespace Scripts
             if ((GetTree().Root.GetNode("GlobalAttributes") as GlobalAttributes).IsMobile &&
                 (GetTree().Root.GetNode("GlobalAttributes") as GlobalAttributes).UseTiltControls)
             {
-                Velocity.x = Input.GetAccelerometer().x * 0.4f;
+                var attemptedMovement = Input.GetAccelerometer().x * 0.5f;
+                if (attemptedMovement > 0 && playerPosition.x <= GetViewport().Size.x - edgeOfScreenBuffer)
+                {
+                    Velocity.x = attemptedMovement;
+                }
+                if (attemptedMovement < 0 && playerPosition.x > 0 + edgeOfScreenBuffer)
+                {
+                    Velocity.x = attemptedMovement;
+                }
             }
             else
             {
